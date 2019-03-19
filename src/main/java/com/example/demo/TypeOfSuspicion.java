@@ -6,9 +6,18 @@ public class TypeOfSuspicion {
     private String suspicionCategory;   //Make it an enum?
     private int lvlOfSeriosity;
 
-    public TypeOfSuspicion(String typeOfSuspicion, int lvlOfSeriosity) {
+    public TypeOfSuspicion(String typeOfSuspicion, String suspicionCategory, int lvlOfSeriosity) {
         this.typeOfSuspicion = typeOfSuspicion;
+        this.suspicionCategory = suspicionCategory;
         this.lvlOfSeriosity = lvlOfSeriosity;
+    }
+
+    public String getSuspicionCategory() {
+        return suspicionCategory;
+    }
+
+    public void setSuspicionCategory(String suspicionCategory) {
+        this.suspicionCategory = suspicionCategory;
     }
 
     public String getTypeOfSuspicion() {
