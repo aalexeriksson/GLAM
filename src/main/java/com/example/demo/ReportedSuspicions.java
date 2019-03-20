@@ -1,90 +1,49 @@
 package com.example.demo;
 
-import java.util.Date;
+import org.springframework.stereotype.Service;
 
-public class ReportedSuspicions {
-    private long tipId;
-    private long suspicionId;
-    private String suspicionDescribed;
-    private String location;
-    private int regionId;
-    private long latCoordinates;
-    private long longCoordinates;
-    private Date dateTime;
-    private String linkImage;
 
-    public ReportedSuspicions(long suspicionId, String suspicionDescribed, String location, int regionId, long latCoordinates, long longCoordinates, Date dateTime, String linkImage) {
-        this.suspicionId = suspicionId;
-        this.suspicionDescribed = suspicionDescribed;
-        this.location = location;
-        this.regionId = regionId;
-        this.latCoordinates = latCoordinates;
-        this.longCoordinates = longCoordinates;
-        this.dateTime = dateTime;
-        this.linkImage = linkImage;
+@Service
+public class ReportedSuspicions extends TipRepository {
+    private long id;
+    private String category;
+    private String type;
+
+    public ReportedSuspicions(String category, String type) {
+        this.category = category;
+        this.type = type;
     }
 
-    public long getSuspicionId() {
-        return suspicionId;
+    public ReportedSuspicions() {
     }
 
-    public void setSuspicionId(long suspicionId) {
-        this.suspicionId = suspicionId;
+    public ReportedSuspicions(long id, String category, String type) {
+        this.id = id;
+        this.category = category;
+        this.type = type;
     }
 
-    public String getSuspicionDescribed() {
-        return suspicionDescribed;
+    public long getId() {
+        return id;
     }
 
-    public void setSuspicionDescribed(String suspicionDescribed) {
-        this.suspicionDescribed = suspicionDescribed;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getLocation() {
-        return location;
+    public String getCategory() {
+        return category;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public int getRegionId() {
-        return regionId;
+    public String getType() {
+        return type;
     }
 
-    public void setRegionId(int regionId) {
-        this.regionId = regionId;
-    }
-
-    public long getLatCoordinates() {
-        return latCoordinates;
-    }
-
-    public void setLatCoordinates(long latCoordinates) {
-        this.latCoordinates = latCoordinates;
-    }
-
-    public long getLongCoordinates() {
-        return longCoordinates;
-    }
-
-    public void setLongCoordinates(long longCoordinates) {
-        this.longCoordinates = longCoordinates;
-    }
-
-    public Date getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(Date dateTime) {
-        this.dateTime = dateTime;
-    }
-
-    public String getLinkImage() {
-        return linkImage;
-    }
-
-    public void setLinkImage(String linkImage) {
-        this.linkImage = linkImage;
+    public void setType(String type) {
+        this.type = type;
     }
 }
