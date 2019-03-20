@@ -44,5 +44,11 @@ public class TipController {
         return "ActivityForm";
     }
 
+    @PostMapping("/send")
+    public String sendData(@RequestParam String crime){
+        System.out.println(crime);
+        return"home";
+    }
+
 
 }

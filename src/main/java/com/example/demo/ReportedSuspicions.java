@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class ReportedSuspicions extends TipRepository {
+public class ReportedSuspicions {
     private long id;
     private String category;
     private String type;

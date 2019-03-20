@@ -6,17 +6,14 @@
 </head>
 <body>
 <p> this is objectform</p>
-<form method="post" action="/">
-    <div>
-        <input value="Object"/>
-        <select class="form-control" id="exampleFormControlSelect1" name="type">
-            <option>assault</option>
-            <option>theft</option>
-            <option>harassment</option>
-            <option>something something</option>
-        </select>
-        <input type="submit" value="choose">
-    </div>
+<form method="post" action="/send">
+    <select id="crime" name="crime">
+        <option value="assault">assault</option>
+        <option value="theft">theft</option>
+        <option value="harassment">harassment</option>
+        <option value="something">something something</option>
+    </select>
+    <input type="submit">
 </form>
 </body>
 </html>
