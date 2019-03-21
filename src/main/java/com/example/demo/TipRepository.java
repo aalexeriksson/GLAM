@@ -12,11 +12,13 @@ public class TipRepository  {
     @Autowired
     private DataSource dataSource;
 
-    public void addTip(String crime){
+    public void addTip(ReportedSuspicions reportedSuspicions){
         try {
             Connection con = dataSource.getConnection();
-            PreparedStatement ps = con.prepareStatement("INSERT INTO TIPS(CRIME) VALUES(?)");
-            ps.setString(1,crime);
+            PreparedStatement ps = con.prepareStatement("INSERT INTO TIPS(CRIME, TEXTBOX, LOCATION) VALUES(?,?,?)");
+            ps.setString(1,reportedSuspicions.getCrime());
+            ps.setString(2,reportedSuspicions.getTextbox());
+            ps.setString(3,reportedSuspicions.getLocation());
 
             ps.executeUpdate();
         } catch (SQLException e){

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,35 +24,38 @@ public class TipController {
     }
 
     @GetMapping("/ChooseCategory")
-    public String getCategory(){
+    public String getCategory() {
 
         return "ChooseCategory";
     }
 
     @GetMapping("/ObjectForm")
-    public String getObjectForm(){
-
+    public String getObjectForm(Model model) {
+        model.addAttribute("ReportedSuspicions", new ReportedSuspicions());
         return "ObjectForm";
     }
 
     @GetMapping("/PersonForm")
-    public String getPersonForm(){
-
+    public String getPersonForm(Model model) {
+        model.addAttribute("ReportedSuspicions", new ReportedSuspicions());
         return "PersonForm";
     }
 
     @GetMapping("/ActivityForm")
-    public String getActivityForm(){
+    public String getActivityForm(Model model) {
+
+        model.addAttribute("ReportedSuspicions", new ReportedSuspicions());
 
         return "ActivityForm";
     }
 
-    @PostMapping("/send")
-    public String sendData(@RequestParam String crime){
-        System.out.println(crime);
-        tipRepo.addTip(crime);
-        return"home";
+
+    @PostMapping("/form")
+    public String submitPersonform(@ModelAttribute ReportedSuspicions reportedSuspicions) {
+    tipRepo.addTip(reportedSuspicions);
+        return "home";
     }
+
 
 
 }

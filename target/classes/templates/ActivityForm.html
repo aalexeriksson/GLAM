@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <title>Activities</title>
@@ -21,18 +21,18 @@
     <div class="container-fluid">
 
         <div class="col-md-4">
-            <form>
+            <form name="activityForm" method="POST" action="/form" th:object="${ReportedSuspicions}" >
                 <h4>Suspicious activity type</h4>
                 <select class="form-control" id='firstList' name='firstList' onClick="getTypeName()">
                 </select>
 
                 <h4>Suspicious activity subtype</h4>
-                <select class="form-control" id='secondList' name='secondList'>
+                <select class="form-control" id='secondList' name='secondList' th:field="*{crime}">
                 </select>
 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Add some details (optional)</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="textbox" th:field="*{textbox}"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -42,7 +42,7 @@
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Address were the suspision occured</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"
-                        placeholder="Current location"></textarea>
+                        placeholder="Current location" name="location" th:field="*{location}"></textarea>
                 </div>
                 <button type="button" class="btn btn-secondary btn-sm">Choose on map</button>
 

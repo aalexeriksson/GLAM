@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <title>Objects</title>
@@ -22,26 +22,26 @@
     <div class="container-fluid">
 
         <div class="col-md-4">
-            <form>
+            <form name="ObjectForm" method="POST" action="/form" th:object="${ReportedSuspicions}" >
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Type of suspicious object:</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>Bag/box</option>
-                        <option>Vehicle</option>
-                        <option>Machinery/Device</option>
-                        <option>Weapon</option>
-                        <option>Substances/Chemicals</option>
+                    <select class="form-control" id="exampleFormControlSelect1" th:field="*{crime}">
+                        <option value="bag/box" >Bag/box</option>
+                        <option value="vehicle">Vehicle</option>
+                        <option value="machinery/device">Machinery/Device</option>
+                        <option value="weapon">Weapon</option>
+                        <option value="substances/chemicals">Substances/Chemicals</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Add some details (optional)</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="textbox" th:field="*{textbox}"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleFormControlFile1">Upload a file (optional)</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="location" th:field="*{location}">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Address were the suspision occured</label>
