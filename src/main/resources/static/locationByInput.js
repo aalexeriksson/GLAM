@@ -1,18 +1,3 @@
-<!DOCTYPE html>
-
-<html>
-
-<head>
-	<script type="text/javascript"
-			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaDSEXBIq9OvQbY9CyAHJ8zpVsSaIcvtM&libraries=places"></script>
-	<script defer type="text/javascript" src="../static/locationScript.js"></script>
-	<link rel="stylesheet" href="../static/style.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-		  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-
-<body>
-<script>
 var map;
 var marker;
 
@@ -28,7 +13,7 @@ function success(position) {
         zoom: 16,
         center: coords,
     }
-
+ 
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
     var marker = new google.maps.Marker({
@@ -43,19 +28,19 @@ function success(position) {
                       marker.setAnimation(google.maps.Animation.BOUNCE);
                   }
         });
-
+    
         //Attach click event handler to the map.
     google.maps.event.addListener(map, 'click', function (e) {
-
+ 
         //Determine the location where the user has clicked.
         var location = e.latLng;
-
+ 
         //Create a marker and placed it on the map.
         var marker = new google.maps.Marker({
             position: location,
             map: map
         });
-
+ 
         //Attach click event handler to the marker.
         google.maps.event.addListener(marker, "click", function (e) {
             var infoWindow = new google.maps.InfoWindow({
@@ -64,7 +49,7 @@ function success(position) {
             infoWindow.open(map, marker);
         });
     });
-
+    
 
 }
 function failure() {
@@ -113,46 +98,15 @@ function initialize() {
                       marker.setAnimation(google.maps.Animation.BOUNCE);
                   }
           });
+    
 
 
-
-
-
+      
+        
       });
   }
-google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addDomListener(window, 'load', initialize); 
 
 
 
-  </script>
-
-<nav class="navbar navbar-light" id="navBarColor">
-	<div>
-		<img class="float-right" id="navBarLogo" src="../static/logoWtext.png" width="30%" height="30%" alt="logo">
-	</div>
-</nav>
-
-<div class="container-fluid">
-	<h3>Choose location where suspicious event occurred</h3>
-
-	<div>
-		<input id="searchTextField" type="text" size="50" placeholder="Enter address or click current location below"
-			   autocomplete="on" runat="server" />
-	</div>
-	<br>
-	<div>
-		<button class="btn btn-primary btn-md" type="button">Current Location</button>
-	</div>
-
-	<div id="map" style="height:500px; width:500px;"></div>
-
-	<div class="card-footer text-muted mx-auto">
-		<a href="#">Terms & Conditions</a>
-	</div>
-</div>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-		crossorigin="anonymous"></script>
-</body>
-
-</html>
+  

@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/style.css">
+        <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaDSEXBIq9OvQbY9CyAHJ8zpVsSaIcvtM&libraries=places"></script>
 
 </head>
 
@@ -21,7 +23,7 @@
     <div class="container-fluid">
 
         <div class="col-md-4">
-            <form>
+            <form onsubmit="openModal()" id="myForm">
                 <h4>Suspicious activity type</h4>
                 <select class="form-control" id='firstList' name='firstList' onClick="getTypeName()">
                 </select>
@@ -41,12 +43,12 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Address were the suspision occured</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"
-                        placeholder="Current location"></textarea>
+                    <input type="text" autocomplete="on" class="form-control" id="location" rows="1"
+                        placeholder="Enter address here or choose current location below"  runat="server"/>
                 </div>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
-                    Choose on map
+                    Choose current location
                 </button>
 
                 <!-- Modal -->
@@ -64,11 +66,8 @@
                             <div class="modal-body">
 
                                 <!--Google map-->
-                                <div id="map-container-google-1" class="z-depth-1-half map-container"
-                                    style="height: 500px">
-                                    <iframe
-                                        src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                                        frameborder="0" style="border:0" allowfullscreen></iframe>
+                                <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
+                                    <div id="map" style="height:500px; width:500px;"></div>
                                 </div>
                                 <!--Google Maps-->
 
@@ -81,7 +80,23 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+<!-- Button trigger modal -->
+<button type="submit" class="btn btn-primary">Submit</button>
+
+<!-- Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <p>Thank you for submitting a tip! <a href="home.html">To home page</a></p>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
             </form>
         </div>
     </div>
