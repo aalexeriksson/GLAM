@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <title>Persons</title>
@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="style.css">
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaDSEXBIq9OvQbY9CyAHJ8zpVsSaIcvtM&libraries=places"></script>
 
@@ -17,29 +17,30 @@
 
     <nav class="navbar navbar-light" id="navBarColor">
         <div>
-            <img class="float-right" id="navBarLogo" src="../static/logoWtext.png" width="30%" height="30%" alt="logo">
+            <img class="float-right" id="navBarLogo" src="logoWtext.png" width="30%" height="30%" alt="logo">
         </div>
     </nav>
 
     <div class="container-fluid">
 
         <div class="col-md-4">
-            <form onsubmit="openModal()" id="myForm">
+
+            <form name="PersonForm" method="POST" action="/form" th:object="${ReportedSuspicions}">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Type of suspicious person</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>Extremist</option>
-                        <option>Gang member</option>
-                        <option>Consumer of sex worker services</option>
-                        <option>Drug dealer</option>
-                        <option>Irregular behavior</option>
-                        <option>Chiled abuser</option>
+                    <select class="form-control" id="exampleFormControlSelect1" th:field="*{crime}">
+                        <option value="Extremist" >Extremist</option>
+                        <option value="Gang member"> gang member</option>
+                        <option value="Consumer of prostitution"> prostitution</option>
+                        <option  value="something"> something </option>
+                        <option value="Irregular behaviour" > irregular behavior </option>
+                        <option value="Child abuse" > child abuse</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Add some details (optional)</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="textbox" th:field="*{textbox}"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -48,11 +49,13 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Address were the suspision occured</label>
+
                     <input type="text" autocomplete="on" class="form-control" id="location" rows="1"
-                        placeholder="Enter address here or choose current location below" runat="server" />
+                        placeholder="Enter address here or choose current location below" runat="server" name="location" th:field="*{location}" />
+
                 </div>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalScrollable">
                     Choose current location
                 </button>
                 
@@ -86,7 +89,7 @@
                 </div>
                 
                 <!-- Button trigger modal -->
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-secondary">Submit</button>
                 
                 <!-- Modal -->
                 <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
@@ -104,7 +107,7 @@
                 </div><!-- /.modal -->
             </form>
         </div>
-
+    </div>
         <div class="card-footer text-muted mx-auto">
             <a href="#">Terms & Conditions</a>
         </div>
@@ -121,7 +124,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-        <script src="../static/script.js"></script>
+        <script src="script.js"></script>
 </body>
 
 </html>

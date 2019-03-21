@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <title>Activities</title>
@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+        <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaDSEXBIq9OvQbY9CyAHJ8zpVsSaIcvtM&libraries=places"></script>
 
 </head>
 
@@ -21,18 +23,18 @@
     <div class="container-fluid">
 
         <div class="col-md-4">
-            <form>
+   <form name="activityForm" method="POST" action="/form" th:object="${ReportedSuspicions}" >
                 <h4>Suspicious activity type</h4>
                 <select class="form-control" id='firstList' name='firstList' onClick="getTypeName()">
                 </select>
 
                 <h4>Suspicious activity subtype</h4>
-                <select class="form-control" id='secondList' name='secondList'>
+                <select class="form-control" id='secondList' name='secondList' th:field="*{crime}">
                 </select>
 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Add some details (optional)</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="textbox" th:field="*{textbox}"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -40,13 +42,63 @@
                     <input type="file" class="form-control-file" id="exampleFormControlFile1">
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Address were the suspision occured</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"
-                        placeholder="Current location"></textarea>
-                </div>
-                <button type="button" class="btn btn-secondary btn-sm">Choose on map</button>
+                    <label for="exampleFormControlTextarea1">Address were the suspicion occured</label>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                    <input type="text" autocomplete="on" class="form-control" id="location" rows="1"
+                        placeholder="Enter address here or choose current location below"  runat="server" name="location" th:field="*{location}"/>
+
+                </div>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalScrollable">
+                    Choose current location
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalScrollableTitle">Choose the location of the
+                                    suspicion</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <!--Google map-->
+                                <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
+                                    <div id="map" style="height:500px; width:500px;"></div>
+                                </div>
+                                <!--Google Maps-->
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<!-- Button trigger modal -->
+<button type="submit" class="btn btn-secondary">Submit</button>
+
+<!-- Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <p>Thank you for submitting a tip! <a href="home.html">To home page</a></p>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
             </form>
         </div>
     </div>
