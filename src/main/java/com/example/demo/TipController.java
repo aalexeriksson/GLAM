@@ -1,5 +1,6 @@
 package com.example.demo;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class TipController {
 
+
     @Autowired
-    ReportedSuspicions reportedSuspicions;
+    TipRepository tipRepo;
 
     //GetMapping for homepage
     @GetMapping("/")
@@ -47,6 +49,7 @@ public class TipController {
     @PostMapping("/send")
     public String sendData(@RequestParam String crime){
         System.out.println(crime);
+        tipRepo.addTip(crime);
         return"home";
     }
 
