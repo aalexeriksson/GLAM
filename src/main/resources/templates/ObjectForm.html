@@ -46,18 +46,19 @@
                     <input type="file" class="form-control-file" id="exampleFormControlFile1">
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Address were the suspision occured</label>
+                    <label for="location">Choose location (current location by default)</label>
                     <input type="text" autocomplete="on" class="form-control" id="location" rows="1"
-                        placeholder="Enter address here or choose current location below" runat="server"  name="location" th:field="*{location}" />
+                           placeholder="Enter address here or choose current location below"  runat="server" name="location" th:field="*{location}"/>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+                        see on map
+                    </button>
                 </div>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalScrollable">
-                    Choose current location
-                </button>
-                
+
+
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                     aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -68,22 +69,22 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                
+
                                 <!--Google map-->
                                 <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
                                     <div id="map" style="height:500px; width:500px;"></div>
                                 </div>
                                 <!--Google Maps-->
-                
+
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
+
                 <!-- Button trigger modal -->
                 <button type="submit" class="btn btn-secondary">Submit</button>
                 
