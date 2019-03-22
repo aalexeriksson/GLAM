@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class TipController {
 
@@ -59,7 +61,13 @@ public class TipController {
     //receivercontroller
 
     @GetMapping("/receiver")
-    public String getTipReceiver(){
+    public String getTipReceiver(Model model) {
+        List<ReportedSuspicions> tipsList = tipRepo.getAllTips();
+        model.addAttribute("tipsList", tipsList);
+        for(ReportedSuspicions reported: tipsList){
+            System.out.println(reported.getCrime()+reported.getTextbox()+reported.getLocation()+reported.getLatitude()+reported.getLongitude());
+
+        }
         return "TipReceiver";
     }
 
