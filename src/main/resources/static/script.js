@@ -121,6 +121,8 @@ function success(position) {
         zoom: 16,
         center: coords,
     }
+    document.getElementById('latitude').value = myLat;
+    document.getElementById('longitude').value = myLong;
 
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
@@ -173,6 +175,10 @@ function initialize() {
 
         var myLat = place.geometry.location.lat();
         var myLong = place.geometry.location.lng();
+
+         document.getElementById('latitude').value = myLat;
+         document.getElementById('longitude').value = myLong;
+
 
         var coords = new google.maps.LatLng(myLat, myLong);
 

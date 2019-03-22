@@ -98,10 +98,7 @@ function initialize() {
                       marker.setAnimation(google.maps.Animation.BOUNCE);
                   }
           });
-    
 
-
-      
         
       });
   }

@@ -121,6 +121,8 @@ function success(position) {
         zoom: 16,
         center: coords,
     }
+    document.getElementById('latitude').value = myLat;
+    document.getElementById('longitude').value = myLong;
 
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
@@ -129,30 +131,35 @@ function success(position) {
         map: map, position: coords
     });
 
-    marker.addListener('click', function toggleBounce() {
-        if (marker.getAnimation() !== null) {
-            marker.setAnimation(null);
-        } else {
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-        }
-    });
 
-    google.maps.event.addListener(marker, "click", function (e) {
-        var infoWindow = new google.maps.InfoWindow({
-            content: 'Current location'
-        });
-        infoWindow.open(map, marker);
-    });
-    //Attach click event handler to the map.
-    google.maps.event.addListener(map, 'click', function (e) {
-        var infoWindow = new google.maps.InfoWindow({
-            content: 'Current location'
-        });
-        infoWindow.open(map, marker);
-    });
+var geocoder = new google.maps.Geocoder;
+        var infowindow = new google.maps.InfoWindow;
 
+          geocodeLatLng(geocoder, map, infowindow, marker);
+
+function geocodeLatLng(geocoder, map, infowindow, marker) {
+ geocoder.geocode({'location': coords}, function(results, status) {
+          if (status === 'OK') {
+            if (results[0]) {
+              infowindow.setContent(results[0].formatted_address);
+              infowindow.open(map, marker);
+              document.getElementById('location').value = results[0].formatted_address;
+
+              console.log(results[0].formatted_address);
+
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
+      }
 
 }
+
+
+
 function failure() {
     $('body').innerHTML("<p>Failure</p>");
 }
@@ -163,12 +170,15 @@ function initialize() {
     var autocomplete = new google.maps.places.Autocomplete(input);
     google.maps.event.addListener(autocomplete, 'place_changed', function () {
         var place = autocomplete.getPlace();
+        var latlng = {lat: myLat, lng: myLong};
 
-        document.getElementById('cityLat').value = place.geometry.location.lat();
-        document.getElementById('cityLng').value = place.geometry.location.lng();
 
         var myLat = place.geometry.location.lat();
         var myLong = place.geometry.location.lng();
+
+         document.getElementById('latitude').value = myLat;
+         document.getElementById('longitude').value = myLong;
+
 
         var coords = new google.maps.LatLng(myLat, myLong);
 
@@ -183,29 +193,29 @@ function initialize() {
             animation: google.maps.Animation.DROP,
             map: map, position: coords
         });
+var geocoder = new google.maps.Geocoder;
+        var infowindow = new google.maps.InfoWindow;
 
-        marker.addListener('click', function toggleBounce() {
-            if (marker.getAnimation() !== null) {
-                marker.setAnimation(null);
+          geocodeLatLng(geocoder, map, infowindow, marker);
+
+function geocodeLatLng(geocoder, map, infowindow, marker) {
+ geocoder.geocode({'location': coords}, function(results, status) {
+          if (status === 'OK') {
+            if (results[0]) {
+              infowindow.setContent(results[0].formatted_address);
+              infowindow.open(map, marker);
+              document.getElementById('location').value = results[0].formatted_address;
+
+              console.log(results[0].formatted_address);
+
             } else {
-                marker.setAnimation(google.maps.Animation.BOUNCE);
+              window.alert('No results found');
             }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
         });
-
-        google.maps.event.addListener(marker, "click", function (e) {
-            var infoWindow = new google.maps.InfoWindow({
-                content: 'Current location'
-            });
-            infoWindow.open(map, marker);
-        });
-        //Attach click event handler to the map.
-        google.maps.event.addListener(map, 'click', function (e) {
-            var infoWindow = new google.maps.InfoWindow({
-                content: 'Current location'
-            });
-            infoWindow.open(map, marker);
-        });
-
+      }
     });
 }
 google.maps.event.addDomListener(window, 'load', initialize);

@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaDSEXBIq9OvQbY9CyAHJ8zpVsSaIcvtM&libraries=places"></script>
-
 </head>
 
 <body>
@@ -55,6 +54,11 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
                         see on map
                     </button>
+
+                    <input  id="latitude" name="latitude" th:field="*{latitude}" >
+                    <input  id="longitude" name="longitude" th:field="*{longitude}">
+
+
                 </div>
 
 
