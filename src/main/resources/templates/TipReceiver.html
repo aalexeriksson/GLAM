@@ -10,11 +10,22 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaDSEXBIq9OvQbY9CyAHJ8zpVsSaIcvtM&libraries=places"></script>
 </head>
 <body>
-This is the receiverside!
 
-    <div id="map" style="height:500px; width:500px;"></div>
+    <div th:each="tipsList:${tipsList}">
+        <div class="list-group" >
+        <a href="#" class="list-group-item list-group-item-action">
+        <div id="tipCards" class="d-flex w-100 justify-content-between">
+            <h5 th:text="${tipsList.crime} + '/' + ${tipsList.location}" class="mb-1">List group item heading</h5>
+            <small th:text="${tipsList.date1} + ' ' + ${tipsList.time1}">3 days ago</small>
+        </div>
+        <p  th:text="${tipsList.textbox}" class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+        <small th:text="'Tip ID: ' + ${tipsList.id}">Donec id elit non mi porta.</small>
+    </a>
+</div>
+    </div>
 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -27,6 +38,5 @@ This is the receiverside!
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script src="script.js"></script>
-
 </body>
 </html>

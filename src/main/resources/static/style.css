@@ -109,6 +109,10 @@
 
 /*---------GOOGLE MAPS IN THE POP UP, END------*/
 
+#tipCards{
+color: black !important;
+border-style: solid;
+border-color: gray;}
 
 /* #map {
     width: 500px;
