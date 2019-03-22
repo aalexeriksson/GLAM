@@ -8,24 +8,55 @@ public class ReportedSuspicions {
     private String location;
     private float latitude;
     private float longitude;
+    private String date1;
+    private String time1;
 
 
     public ReportedSuspicions() {
     }
-    public ReportedSuspicions(String crime, String textbox, String location, float latitude, float longitude) {
+    public ReportedSuspicions(String crime, String textbox, String location, float latitude, float longitude, String date1, String time1) {
         this.crime = crime;
         this.textbox = textbox;
         this.location = location;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.date1 = date1;
+        this.time1 = time1;
     }
-    public ReportedSuspicions(long id,String crime, String textbox, String location, float latitude, float longitude) {
+    public ReportedSuspicions(long id,String crime, String textbox, String location, float latitude, float longitude, String date1, String time1) {
        this.id = id;
         this.crime = crime;
         this.textbox = textbox;
         this.location = location;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.date1 = date1;
+        this.time1 = time1;
+
+    }
+
+    public String getDate1() {
+        return date1;
+    }
+
+    public void setDate1(String date1) {
+        this.date1 = date1;
+    }
+
+    public String getTime1() {
+        return time1;
+    }
+
+    public void setTime1(String time1) {
+        this.time1 = time1;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public float getLatitude() {
