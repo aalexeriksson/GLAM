@@ -43,8 +43,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleFormControlFile1">Upload a file (optional)</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    <label for="uploadbootstrap">Upload a file (optional)</label>
+                 <input type="file" class="form-control-file" id="uploadbootstrap">
                 </div>
                 <div class="form-group">
                     <label for="location">Choose location (current location by default)</label>
@@ -55,9 +55,10 @@
                         see on map
                     </button>
 
-                    <input  id="latitude" name="latitude" th:field="*{latitude}" >
-                    <input  id="longitude" name="longitude" th:field="*{longitude}">
-
+                    <input  type="hidden" id="latitude" name="latitude" th:field="*{latitude}" >
+                    <input  type="hidden" id="longitude" name="longitude" th:field="*{longitude}">
+                    <input  type="hidden" id="date" name="date" th:field="*{time1}" >
+                    <input  type="hidden" id="time" name="date" th:field="*{date1}" >
 
                 </div>
 
@@ -89,11 +90,11 @@
                         </div>
                     </div>
                 </div>
-
+                <a href="#" id="upload">Upload profile picture</a>
 
                 <!-- Button trigger modal -->
-                <button type="submit" class="btn btn-secondary">Submit</button>
-                
+                <button type="submit" class="btn btn-secondary" >Submit</button>
+
                 <!-- Modal -->
                 <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
                     <div class="modal-dialog" role="document">

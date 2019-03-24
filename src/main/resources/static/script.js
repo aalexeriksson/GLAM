@@ -231,3 +231,15 @@ function geocodeLatLng(geocoder, map, infowindow, marker) {
     });
 }
 google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+            var cloud = 'dfyxx5zdo'; // todo your cloud_name here!
+            var preset= 'qsqog8rz'; // todo your upload_preset here!
+
+            document.getElementById("upload").addEventListener("click", function() {
+                cloudinary.openUploadWidget({ cloud_name: cloud, upload_preset: preset, multiple: false, resource_type: 'image', folder: 'test', form: 'form', field_name: 'picturecloudinary', thumbnails: '#thumbnail'},
+                function(error, result) { console.log(error, result) });
+
+                console.log('i was clicked');
+            }, false);

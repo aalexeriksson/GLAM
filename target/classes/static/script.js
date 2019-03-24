@@ -112,6 +112,9 @@ var marker;
 navigator.geolocation.getCurrentPosition(success, failure);
 
 function success(position) {
+var currentDate = new Date();
+var time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
+var date = currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear();
     var myLat = position.coords.latitude;
     var myLong = position.coords.longitude;
 
@@ -121,8 +124,12 @@ function success(position) {
         zoom: 16,
         center: coords,
     }
-    document.getElementById('latitude').value = myLat;
-    document.getElementById('longitude').value = myLong;
+
+            document.getElementById('latitude').value = myLat;
+            document.getElementById('longitude').value = myLong;
+            document.getElementById('date').value = date;
+            document.getElementById('time').value = time;
+
 
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
@@ -166,6 +173,9 @@ function failure() {
 
 
 function initialize() {
+       var currentDate = new Date();
+        var time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
+       var date = currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear();
     var input = document.getElementById('location');
     var autocomplete = new google.maps.places.Autocomplete(input);
     google.maps.event.addListener(autocomplete, 'place_changed', function () {
@@ -178,6 +188,8 @@ function initialize() {
 
          document.getElementById('latitude').value = myLat;
          document.getElementById('longitude').value = myLong;
+         document.getElementById('date').value = date;
+         document.getElementById('time').value = time;
 
 
         var coords = new google.maps.LatLng(myLat, myLong);
@@ -219,3 +231,15 @@ function geocodeLatLng(geocoder, map, infowindow, marker) {
     });
 }
 google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+            var cloud = 'dfyxx5zdo'; // todo your cloud_name here!
+            var preset= 'qsqog8rz'; // todo your upload_preset here!
+
+            document.getElementById("upload").addEventListener("click", function() {
+                cloudinary.openUploadWidget({ cloud_name: cloud, upload_preset: preset, multiple: false, resource_type: 'image', folder: 'test', form: 'form', field_name: 'picturecloudinary', thumbnails: '#thumbnail'},
+                function(error, result) { console.log(error, result) });
+
+                console.log('i was clicked');
+            }, false);

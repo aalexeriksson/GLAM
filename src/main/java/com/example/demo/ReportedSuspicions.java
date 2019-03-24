@@ -10,10 +10,21 @@ public class ReportedSuspicions {
     private float longitude;
     private String date1;
     private String time1;
-
+    private String image;
 
     public ReportedSuspicions() {
     }
+
+
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public ReportedSuspicions(String crime, String textbox, String location, float latitude, float longitude, String date1, String time1) {
         this.crime = crime;
         this.textbox = textbox;
@@ -33,6 +44,18 @@ public class ReportedSuspicions {
         this.date1 = date1;
         this.time1 = time1;
 
+    }
+
+    public ReportedSuspicions(long id, String crime, String textbox, String location, float latitude, float longitude, String date1, String time1, String image) {
+        this.id= id;
+        this.crime = crime;
+        this.textbox = textbox;
+        this.location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.date1 = date1;
+        this.time1 = time1;
+        this.image = image;
     }
 
     public String getDate1() {
