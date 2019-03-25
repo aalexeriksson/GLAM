@@ -117,12 +117,14 @@ var time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + curre
 var date = currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear();
     var myLat = position.coords.latitude;
     var myLong = position.coords.longitude;
+    position[0]=myLat;
+    position[1]=myLong;
 
-    var coords = new google.maps.LatLng(myLat, myLong);
+    var coords = new google.maps.LatLng(position[0], position[1]);
 
     var mapOptions = {
         zoom: 16,
-        center: coords,
+        center: coords
     }
 
             document.getElementById('latitude').value = myLat;
@@ -135,7 +137,8 @@ var date = currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + cu
 
     var marker = new google.maps.Marker({
         animation: google.maps.Animation.DROP,
-        map: map, position: coords
+        map: map, 
+        position: coords
     });
 
 
@@ -163,6 +166,37 @@ function geocodeLatLng(geocoder, map, infowindow, marker) {
         });
       }
 
+      google.maps.event.addListener(map, 'click', function(event) {
+        var result = [event.latLng.lat(), event.latLng.lng()];
+        transition(result);
+        console.log(event.latLng.lat());
+    });
+    
+var numDeltas = 100;
+var delay = 10; //milliseconds
+var i = 0;
+var deltaLat;
+var deltaLng;
+
+function transition(result){
+    i = 0;
+    deltaLat = (result[0] - position[0])/numDeltas;
+    deltaLng = (result[1] - position[1])/numDeltas;
+    moveMarker();
+}
+
+function moveMarker(){
+    position[0] += deltaLat;
+    position[1] += deltaLng;
+    var latlng = new google.maps.LatLng(position[0], position[1]);
+    marker.setPosition(latlng);
+    if(i!=numDeltas){
+        i++;
+        setTimeout(moveMarker, delay);
+    }
+}
+
+
 }
 
 
@@ -185,18 +219,20 @@ function initialize() {
 
         var myLat = place.geometry.location.lat();
         var myLong = place.geometry.location.lng();
-
+        position[0]=myLat;
+        position[1]=myLong;
+        
          document.getElementById('latitude').value = myLat;
          document.getElementById('longitude').value = myLong;
          document.getElementById('date').value = date;
          document.getElementById('time').value = time;
 
 
-        var coords = new google.maps.LatLng(myLat, myLong);
+         var coords = new google.maps.LatLng(position[0], position[1]);
 
         var mapOptions = {
             zoom: 16,
-            center: coords,
+            center: coords
         }
 
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
@@ -228,10 +264,40 @@ function geocodeLatLng(geocoder, map, infowindow, marker) {
           }
         });
       }
+
+      google.maps.event.addListener(map, 'click', function(event) {
+        var result = [event.latLng.lat(), event.latLng.lng()];
+        transition(result);
+        console.log(event.latLng.lat());
+    }); 
+
+    var numDeltas = 100;
+    var delay = 10; //milliseconds
+    var i = 0;
+    var deltaLat;
+    var deltaLng;
+    
+    function transition(result){
+        i = 0;
+        deltaLat = (result[0] - position[0])/numDeltas;
+        deltaLng = (result[1] - position[1])/numDeltas;
+        moveMarker();
+    }
+    
+    function moveMarker(){
+        position[0] += deltaLat;
+        position[1] += deltaLng;
+        var latlng = new google.maps.LatLng(position[0], position[1]);
+        marker.setPosition(latlng);
+        if(i!=numDeltas){
+            i++;
+            setTimeout(moveMarker, delay);
+        }
+    }
+    
     });
 }
 google.maps.event.addDomListener(window, 'load', initialize);
-
 
 
             var cloud = 'dfyxx5zdo'; // todo your cloud_name here!
@@ -239,7 +305,55 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
             document.getElementById("upload").addEventListener("click", function() {
                 cloudinary.openUploadWidget({ cloud_name: cloud, upload_preset: preset, multiple: false, resource_type: 'image', folder: 'test', form: 'form', field_name: 'picturecloudinary', thumbnails: '#thumbnail'},
+
                 function(error, result) { console.log(error, result) });
 
                 console.log('i was clicked');
             }, false);
+
+
+/*
+Please consider that the JS part isn't production ready at all, I just code it to show the concept of merging filters and titles together !
+*/
+$(document).ready(function(){
+    $('.filterable .btn-filter').click(function(){
+        var $panel = $(this).parents('.filterable'),
+        $filters = $panel.find('.filters input'),
+        $tbody = $panel.find('.table tbody');
+        if ($filters.prop('disabled') == true) {
+            $filters.prop('disabled', false);
+            $filters.first().focus();
+        } else {
+            $filters.val('').prop('disabled', true);
+            $tbody.find('.no-result').remove();
+            $tbody.find('tr').show();
+        }
+    });
+
+    $('.filterable .filters input').keyup(function(e){
+        /* Ignore tab key */
+        var code = e.keyCode || e.which;
+        if (code == '9') return;
+        /* Useful DOM data and selectors */
+        var $input = $(this),
+        inputContent = $input.val().toLowerCase(),
+        $panel = $input.parents('.filterable'),
+        column = $panel.find('.filters th').index($input.parents('th')),
+        $table = $panel.find('.table'),
+        $rows = $table.find('tbody tr');
+        /* Dirtiest filter function ever ;) */
+        var $filteredRows = $rows.filter(function(){
+            var value = $(this).find('td').eq(column).text().toLowerCase();
+            return value.indexOf(inputContent) === -1;
+        });
+        /* Clean previous no-result if exist */
+        $table.find('tbody .no-result').remove();
+        /* Show all rows, hide filtered ones (never do that outside of a demo ! xD) */
+        $rows.show();
+        $filteredRows.hide();
+        /* Prepend no-result row if all rows are filtered */
+        if ($filteredRows.length === $rows.length) {
+            $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="'+ $table.find('.filters th').length +'">No result found</td></tr>'));
+        }
+    });
+});

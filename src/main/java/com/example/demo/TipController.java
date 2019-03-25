@@ -53,13 +53,6 @@ public class TipController {
     }
 
 
-    @PostMapping("/form")
-    public String submitPersonform(@ModelAttribute ReportedSuspicions reportedSuspicions) {
-    tipRepo.addTip(reportedSuspicions);
-        return "home";
-    }
-
-    //receivercontroller
 
     @GetMapping("/receiver")
     public String getTipReceiver(Model model) {
@@ -73,10 +66,15 @@ public class TipController {
 //
 //        return "TipReceiver";
 //    }
-    @PostMapping("/receiver")
-    public String profile(@ModelAttribute ReportedSuspicions reportedSuspicions, @RequestParam(value = "picturecloudinary", required = false) String picture) {
+
+
+    @PostMapping("/form")
+    public String submitPersonform(@ModelAttribute ReportedSuspicions reportedSuspicions, @RequestParam(value = "picturecloudinary", required = false) String picture) {
         reportedSuspicions.setImage("https://res.cloudinary.com/" + cloud + "/" + picture);
-        return "redirect:/";
+
+        tipRepo.addTip(reportedSuspicions);
+
+        return "home";
     }
 
 

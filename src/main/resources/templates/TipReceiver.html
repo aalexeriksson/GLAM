@@ -7,22 +7,91 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="bootstrapcss.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesearchbox.css">
+    <script src="jquery.js"></script>
+    <script src="bootstrapjs.js"></script>
+    <script type="text/javascript" src="searchscript.js"></script>
 </head>
 <body>
+<div class="container">
+    <div class="row">
+        <div class="panel panel-primary filterable">
+            <div class="panel-heading">
+                <h3 class="panel-title">Users</h3>
+                <div class="pull-right">
+                    <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                <tr class="filters">
+                    <th><input type="text" class="form-control" placeholder="#" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="Image" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="Category" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="Type" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="Description" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="Date" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="Time" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="Location" disabled></th>
+                </tr>
+                </thead>
+                            <tbody>
 
-    <div th:each="tipsList:${tipsList}">
-        <div class="list-group" >
-        <a href="#" class="list-group-item list-group-item-action">
-        <div id="tipCards" class="d-flex w-100 justify-content-between">
-            <h5 th:text="${tipsList.crime} + '/' + ${tipsList.location}" class="mb-1">List group item heading</h5>
-            <small th:text="${tipsList.date1} + ' ' + ${tipsList.time1}">3 days ago</small>
+                            <div th:each="tipsList:${tipsList}">
+
+                                <td th:text="${tipsList.id}"></td>
+
+                                <td><img th:if="${tipsList.image != 'https://res.cloudinary.com/dfyxx5zdo/null'}" th:src="${tipsList.image}"></td>
+                                <td th:text="${tipsList.crime}"class="mb-1">List group item heading>
+                                </td>
+
+                                <td th:text="${tipsList.textbox}"></td>
+                                <td th:text="${tipsList.date1}"></td>
+                                <td th:text="${tipsList.time1}"></td>
+
+                                <td th:text="${tipsList.location}"></td>
+
+                                <td style="width: 20%;">
+                                    <a href="#" class="table-link">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+									</span>
+                                    </a>
+                                    <a href="#" class="table-link danger">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+									</span>
+                                    </a>
+                                </td>
+                            </tr>
+                                </div>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <ul class="pagination pull-right">
+                        <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <p th:text="${tipsList.textbox}" class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-        <small th:text="'Tip ID: ' + ${tipsList.id}">Donec id elit non mi porta.</small>
-    </a>
-           <div> <img th:if="${tipsList.image != null}" th:src="${tipsList.image}"></div>
-</div>
     </div>
+</div>
+
+
 
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
@@ -37,6 +106,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-<script src="script.js"></script>
+
 </body>
 </html>

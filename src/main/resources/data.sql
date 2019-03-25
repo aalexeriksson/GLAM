@@ -21,11 +21,3 @@ INSERT INTO POLICE_LOGIN (FIRST_NAME, LAST_NAME, USERNAME, PASSWORD) VALUES ('Lu
 INSERT INTO POLICE_LOGIN (FIRST_NAME, LAST_NAME, USERNAME, PASSWORD) VALUES ('Miriam', 'Croft', 'tomb', '1234');
 INSERT INTO POLICE_LOGIN (FIRST_NAME, LAST_NAME, USERNAME, PASSWORD) VALUES ('Gregory', 'mendel', 'pea', '1234');
 
-<<<<<<< HEAD
-INSERT INTO TIPS (CRIME, TEXTBOX, LOCATION, LATITUDE, LONGITUDE, DATE1, TIME1, IMAGE) VALUES ('bag/box', 'Animal related', 'Animal abuse', 50.000394545438559, 16.3333354543333,'2019-10-07', '15:34', 'https://res.cloudinary.com/dfyxx5zdo/image/upload/v1553266216/sample.jpg' );
-=======
-<<<<<<< HEAD
-INSERT INTO TIPS (CRIME, TEXTBOX, LOCATION, LATITUDE, LONGITUDE, DATE1, TIME1, IMAGE) VALUES ('bag/box', 'Animal related', 'Animal abuse', 50.000394545438559, 16.3333354543333,'2019-10-07', '15:34', 'https://res.cloudinary.com/dfyxx5zdo/image/upload/v1553266216/sample.jpg' );
-=======
->>>>>>> master
->>>>>>> beb3fd9496094f9ae2cc493c8ae7936069c60285
