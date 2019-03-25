@@ -17,10 +17,16 @@
             <h5 th:text="${tipsList.crime} + '/' + ${tipsList.location}" class="mb-1">List group item heading</h5>
             <small th:text="${tipsList.date1} + ' ' + ${tipsList.time1}">3 days ago</small>
         </div>
+<<<<<<< HEAD
         <p th:text="${tipsList.textbox}" class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
         <small th:text="'Tip ID: ' + ${tipsList.id}">Donec id elit non mi porta.</small>
     </a>
            <div> <img th:if="${tipsList.image != null}" th:src="${tipsList.image}"></div>
+=======
+        <p  th:text="${tipsList.textbox}" class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+        <small th:text="'Tip ID: ' + ${tipsList.id}">Donec id elit non mi porta.</small>
+    </a>
+>>>>>>> beb3fd9496094f9ae2cc493c8ae7936069c60285
 </div>
     </div>
 
