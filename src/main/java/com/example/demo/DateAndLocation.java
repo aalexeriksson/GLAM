@@ -4,25 +4,22 @@ public class DateAndLocation {
 
     private long id;
     private long supicion_id;
-    private long region_id;
     private float longitude;
     private float lattitude;
     private String date1;
     private String time1;
 
-    public DateAndLocation(long id, long supicion_id, long region_id, float longitude, float lattitude, String date1, String time1) {
+    public DateAndLocation(long id, long supicion_id, float longitude, float lattitude, String date1, String time1) {
         this.id = id;
         this.supicion_id = supicion_id;
-        this.region_id = region_id;
         this.longitude = longitude;
         this.lattitude = lattitude;
         this.date1 = date1;
         this.time1 = time1;
     }
 
-    public DateAndLocation(long supicion_id, long region_id, float longitude, float lattitude, String date1, String time1) {
+    public DateAndLocation(long supicion_id, float longitude, float lattitude, String date1, String time1) {
         this.supicion_id = supicion_id;
-        this.region_id = region_id;
         this.longitude = longitude;
         this.lattitude = lattitude;
         this.date1 = date1;
@@ -45,13 +42,9 @@ public class DateAndLocation {
         this.supicion_id = supicion_id;
     }
 
-    public long getRegion_id() {
-        return region_id;
-    }
 
-    public void setRegion_id(long region_id) {
-        this.region_id = region_id;
-    }
+
+
 
     public float getLongitude() {
         return longitude;

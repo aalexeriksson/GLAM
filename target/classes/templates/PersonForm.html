@@ -13,12 +13,12 @@
 </head>
 
 <body>
-
-    <nav class="navbar navbar-light" id="navBarColor">
-        <div>
-            <img class="float-right" id="navBarLogo" src="logoWtext.png" width="30%" height="30%" alt="logo">
-        </div>
-    </nav>
+<nav class="navbar navbar-light" id="navBarColor">
+    <div id="navBarLogo"><a style="margin-right: 5%" href="/ChooseCategory">&#8678;</a>
+        <span style="margin-right: 5%">Describe event (Step 2/2)</span>
+        <img src="logoWithNameWhite.png" width="20%" height="20%" alt="logo">
+    </div>
+</nav>
 
     <div class="container-fluid">
 
@@ -43,8 +43,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleFormControlFile1">Upload a file (optional)</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    <label for="uploadbootstrap">Upload a file (optional)</label>
+                 <input type="file" class="form-control-file" id="uploadbootstrap">
                 </div>
                 <div class="form-group">
                     <label for="location">Choose location (current location by default)</label>
@@ -57,8 +57,9 @@
 
                     <input  type="hidden" id="latitude" name="latitude" th:field="*{latitude}" >
                     <input  type="hidden" id="longitude" name="longitude" th:field="*{longitude}">
-                    <input  type="hidden" id="date" name="date" th:field="*{time1}" >
-                    <input  type="hidden" id="time" name="date" th:field="*{date1}" >
+                    <input  type="hidden" id="date" name="date1" th:field="*{date1}" >
+                    <input  type="hidden" id="time" name="time1" th:field="*{time1}" >
+
 
                 </div>
 
@@ -91,10 +92,9 @@
                     </div>
                 </div>
 
-
                 <!-- Button trigger modal -->
-                <button type="submit" class="btn btn-secondary">Submit</button>
-                
+                <button type="submit" class="btn btn-secondary" >Submit</button>
+
                 <!-- Modal -->
                 <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
                     <div class="modal-dialog" role="document">

@@ -1,9 +1,31 @@
+
+body{
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 #navBarColor{
     background-color: #0c3256;
+    text-align: center;
+    margin-bottom: 3%;
 }
+
+#location{
+    background-image: url(vectorMap.png);
+    background-repeat: no-repeat;
+    background-position: left center !important ;4
+    background-margin-left: 0;
+    background-origin: content-box;
+    margin-bottom: 2%;
+     text-indent: 10%;
+
+}
+
 #navBarLogo{
-    text-align: right;
-}
+margin-top: auto;
+margin-bottom: auto;
+    text-align: center;
+    color:white;
+           }
 
 #buttonDiv{
     padding: 20px;
