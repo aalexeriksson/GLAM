@@ -8,22 +8,52 @@ public class Suspicions {
     private String subtype_of_suspicion;
     private String details;
     private String media;
+    private String address;
+    private double latitude;
+    private double longitude;
+    private String date1;
+    private String time1;
 
-    public Suspicions(long id, String category_of_suspicion, String type_of_suspicion, String subtype_of_suspicion, String details, String media) {
+    public Suspicions(long id, String category_of_suspicion, String type_of_suspicion, String subtype_of_suspicion, String details, String media, String address, double latitude, double longitude, String date1, String time1) {
         this.id = id;
         this.category_of_suspicion = category_of_suspicion;
         this.type_of_suspicion = type_of_suspicion;
         this.subtype_of_suspicion = subtype_of_suspicion;
         this.details = details;
         this.media = media;
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.date1 = date1;
+        this.time1 = time1;
     }
 
-    public Suspicions(String category_of_suspicion, String type_of_suspicion, String subtype_of_suspicion, String details, String media) {
+    public Suspicions(String category_of_suspicion, String type_of_suspicion, String subtype_of_suspicion, String details, String media, String address, double latitude, double longitude, String date1, String time1) {
         this.category_of_suspicion = category_of_suspicion;
         this.type_of_suspicion = type_of_suspicion;
         this.subtype_of_suspicion = subtype_of_suspicion;
         this.details = details;
         this.media = media;
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.date1 = date1;
+        this.time1 = time1;
+    }
+
+    public Suspicions() {
+    }
+
+    public Suspicions(String category_of_suspicion) {
+        this.category_of_suspicion = category_of_suspicion;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public long getId() {
@@ -72,5 +102,37 @@ public class Suspicions {
 
     public void setMedia(String media) {
         this.media = media;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double lattitude) {
+        this.latitude = lattitude;
+    }
+
+    public String getDate1() {
+        return date1;
+    }
+
+    public void setDate1(String date1) {
+        this.date1 = date1;
+    }
+
+    public String getTime1() {
+        return time1;
+    }
+
+    public void setTime1(String time1) {
+        this.time1 = time1;
     }
 }
