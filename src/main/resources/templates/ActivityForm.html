@@ -3,6 +3,7 @@
 
 <head>
     <title>Activities</title>
+    <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -49,7 +50,7 @@
 
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
-                        see on map
+                        show map
                     </button>
 
 					<input  type="hidden" id="latitude" name="latitude" th:field="*{latitude}" >
@@ -83,6 +84,7 @@
 
                             </div>
                             <div class="modal-footer">
+                                <button onClick="window.location.reload()" type="button" class="btn btn-light" data-dismiss="modal">Get current position</button>
                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
                             </div>
                         </div>
