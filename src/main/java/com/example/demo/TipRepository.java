@@ -38,7 +38,8 @@ public class TipRepository  {
                 rs.getFloat("latitude"),
                 rs.getFloat("longitude"),
                 rs.getString("date1"),
-                rs.getString("time1")
+                rs.getString("time1"),
+                rs.getString("image")
         );
 
 
@@ -47,14 +48,16 @@ public class TipRepository  {
     public void addTip(ReportedSuspicions reportedSuspicions){
         try {
             Connection con = dataSource.getConnection();
-            PreparedStatement ps = con.prepareStatement("INSERT INTO TIPS(CRIME, TEXTBOX, LOCATION, LATITUDE, LONGITUDE, DATE1, TIME1) VALUES(?,?,?,?,?,?,?,?)");
-            ps.setString(2,reportedSuspicions.getCrime());
-            ps.setString(3,reportedSuspicions.getTextbox());
-            ps.setString(4,reportedSuspicions.getLocation());
-            ps.setFloat(5,reportedSuspicions.getLatitude());
-            ps.setFloat(6,reportedSuspicions.getLongitude());
-            ps.setString(7,reportedSuspicions.getDate1());
-            ps.setString(8,reportedSuspicions.getTime1());
+            PreparedStatement ps = con.prepareStatement("INSERT INTO TIPS(CRIME, TEXTBOX, LOCATION, LATITUDE, LONGITUDE, DATE1, TIME1, IMAGE) VALUES(?,?,?,?,?,?,?,?)");
+            ps.setString(1,reportedSuspicions.getCrime());
+            ps.setString(2,reportedSuspicions.getTextbox());
+            ps.setString(3,reportedSuspicions.getLocation());
+            ps.setFloat(4,reportedSuspicions.getLatitude());
+            ps.setFloat(5,reportedSuspicions.getLongitude());
+            ps.setString(6,reportedSuspicions.getDate1());
+            ps.setString(7,reportedSuspicions.getTime1());
+            ps.setString(8,reportedSuspicions.getImage());
+
 
             ps.executeUpdate();
         } catch (SQLException e){

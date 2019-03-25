@@ -18,6 +18,7 @@ public class TipController {
     @Autowired
     TipRepository tipRepo;
 
+    String cloud ="dfyxx5zdo";
     //GetMapping for homepage
     @GetMapping("/")
     public String getStartpage() {
@@ -64,19 +65,19 @@ public class TipController {
     public String getTipReceiver(Model model) {
         List<ReportedSuspicions> tipsList = tipRepo.getAllTips();
         model.addAttribute("tipsList", tipsList);
-        for(ReportedSuspicions reported: tipsList){
-            System.out.println(reported.getCrime()+reported.getTextbox()+reported.getLocation()+reported.getLatitude()+reported.getLongitude());
-
-        }
         return "TipReceiver";
     }
 
+//    @PostMapping("/receiver")
+//    public String postTipReceiver(){
+//
+//        return "TipReceiver";
+//    }
     @PostMapping("/receiver")
-    public String postTipReceiver(){
-
-        return "TipReceiver";
+    public String profile(@ModelAttribute ReportedSuspicions reportedSuspicions, @RequestParam(value = "picturecloudinary", required = false) String picture) {
+        reportedSuspicions.setImage("https://res.cloudinary.com/" + cloud + "/" + picture);
+        return "redirect:/";
     }
-
 
 
 }
