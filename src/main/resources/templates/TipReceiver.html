@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaDSEXBIq9OvQbY9CyAHJ8zpVsSaIcvtM&libraries=places"></script>
 </head>
 <body>
 
@@ -18,9 +17,10 @@
             <h5 th:text="${tipsList.crime} + '/' + ${tipsList.location}" class="mb-1">List group item heading</h5>
             <small th:text="${tipsList.date1} + ' ' + ${tipsList.time1}">3 days ago</small>
         </div>
-        <p  th:text="${tipsList.textbox}" class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+        <p th:text="${tipsList.textbox}" class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
         <small th:text="'Tip ID: ' + ${tipsList.id}">Donec id elit non mi porta.</small>
     </a>
+           <div> <img th:if="${tipsList.image != null}" th:src="${tipsList.image}"></div>
 </div>
     </div>
 

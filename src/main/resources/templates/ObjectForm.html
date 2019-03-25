@@ -14,12 +14,12 @@
 
 <body>
 
-    <nav class="navbar navbar-light" id="navBarColor">
-        <div>
-            <img class="float-right" id="navBarLogo" src="logoWtext.png" width="30%" height="30%" alt="logo">
-        </div>
-    </nav>
-
+<nav class="navbar navbar-light" id="navBarColor">
+    <div id="navBarLogo"><a href="/ChooseCategory" style="margin-right: 5%">&#8678;</a>
+        <span style="margin-right: 5%">Describe event (Step 2/2)</span>
+        <img src="logoWithNameWhite.png" width="20%" height="20%" alt="logo">
+    </div>
+</nav>
     <div class="container-fluid">
 
         <div class="col-md-4">
@@ -49,15 +49,17 @@
                     <label for="location">Choose location (current location by default)</label>
                     <input type="text" autocomplete="on" class="form-control" id="location" rows="1"
                            placeholder="Enter address here or choose current location below"  runat="server" name="location" th:field="*{location}"/>
+
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
                         see on map
                     </button>
 
-					<input  type="hidden" id="latitude" name="latitude" th:field="*{latitude}" >
-					<input  type="hidden" id="longitude" name="longitude" th:field="*{longitude}">
-					<input  type="hidden" id="date" name="date" th:field="*{time1}" >
-					<input  type="hidden" id="time" name="date" th:field="*{date1}" >
+                    <input  type="hidden" id="latitude" name="latitude" th:field="*{latitude}" >
+                    <input  type="hidden" id="longitude" name="longitude" th:field="*{longitude}">
+                    <input  type="hidden" id="date" name="date1" th:field="*{date1}" >
+                    <input  type="hidden" id="time" name="time1" th:field="*{time1}" >
+
 
                 </div>
 
