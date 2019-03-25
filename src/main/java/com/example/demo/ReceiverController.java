@@ -42,17 +42,4 @@ public class ReceiverController {
         return "/TipReceiverHome";
     }
 
-    @GetMapping("/")
-    public String getTipReceiver(){
-        return "TipReceiver";
-    }
-
-    @PostMapping("/")
-    public String postTipReceiver(){
-
-    return "TipReceiver";
-    }
-
-
-
 }

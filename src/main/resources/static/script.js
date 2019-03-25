@@ -110,110 +110,115 @@ $('#myForm').on('submit', function (e) {
 var map;
 let marker;
 
-navigator.geolocation.getCurrentPosition(success, failure);
+function update(){
+  navigator.geolocation.getCurrentPosition(success, failure);
+  function success(position) {
+    var currentDate = new Date();
+    var time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
+    var date = currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear();
 
-function success(position) {
-  var currentDate = new Date();
-  var time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
-  var date = currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear();
+    var myLat = position.coords.latitude;
+    var myLong = position.coords.longitude;
 
-  var myLat = position.coords.latitude;
-  var myLong = position.coords.longitude;
+    position = [];
+    position[0] = myLat;
+    position[1] = myLong;
 
-  position = [];
-  position[0] = myLat;
-  position[1] = myLong;
-
-  document.getElementById('latitude').value = myLat;
-  document.getElementById('longitude').value = myLong;
-  document.getElementById('date').value = date;
-  document.getElementById('time').value = time;
-
-
-  var coords = new google.maps.LatLng(myLat, myLong);
-
-  var mapOptions = {
-    zoom: 16,
-    center: coords,
-  }
-
-  map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-  let marker = new google.maps.Marker({
-    animation: google.maps.Animation.DROP,
-    map: map,
-    position: coords
-  });
-
-  var geocoder = new google.maps.Geocoder;
-  var infowindow = new google.maps.InfoWindow;
-
-  geocodeLatLng(geocoder, map, infowindow, marker);
-
-  function geocodeLatLng(geocoder, map, infowindow, marker) {
-    geocoder.geocode({ 'location': coords }, function (results, status) {
-      if (status === 'OK') {
-        if (results[0]) {
-          infowindow.setContent(results[0].formatted_address);
-          infowindow.open(map, marker);
-          document.getElementById('location').value = results[0].formatted_address;
-
-          console.log(results[0].formatted_address);
-
-        } else {
-          window.alert('No results found');
-        }
-      } else {
-        window.alert('Geocoder failed due to: ' + status);
-      }
-    });
-  }
-
-  google.maps.event.addListener(map, 'click', function (event) {
-    var result = [event.latLng.lat(), event.latLng.lng()];
-    transition(result);
-    myLat = event.latLng.lat();
-    myLong = event.latLng.lng();
-    console.log(myLat);
-    console.log(myLong);
-    coords = new google.maps.LatLng(myLat, myLong);
-    geocodeLatLng(geocoder, map, infowindow, marker);
     document.getElementById('latitude').value = myLat;
     document.getElementById('longitude').value = myLong;
-
-  });
-
-  var numDeltas = 100;
-  var delay = 10; //milliseconds
-  var i = 0;
-  var deltaLat;
-  var deltaLng;
-
-  function transition(result) {
-    i = 0;
-    deltaLat = (result[0] - position[0]) / numDeltas;
-    deltaLng = (result[1] - position[1]) / numDeltas;
-    moveMarker();
-  }
+    document.getElementById('date').value = date;
+    document.getElementById('time').value = time;
 
 
-  function moveMarker() {
-    position[0] += deltaLat;
-    position[1] += deltaLng;
-    var latlng = new google.maps.LatLng(position[0], position[1]);
-    marker.setPosition(latlng);
-    if (i != numDeltas) {
-      i++;
-      setTimeout(moveMarker, delay);
+    var coords = new google.maps.LatLng(myLat, myLong);
+
+    var mapOptions = {
+      zoom: 16,
+      center: coords,
     }
+
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+    let marker = new google.maps.Marker({
+      animation: google.maps.Animation.DROP,
+      map: map,
+      position: coords
+    });
+
+    var geocoder = new google.maps.Geocoder;
+    var infowindow = new google.maps.InfoWindow;
+
+    geocodeLatLng(geocoder, map, infowindow, marker);
+
+    function geocodeLatLng(geocoder, map, infowindow, marker) {
+      geocoder.geocode({ 'location': coords }, function (results, status) {
+        if (status === 'OK') {
+          if (results[0]) {
+            infowindow.setContent(results[0].formatted_address);
+            infowindow.open(map, marker);
+            document.getElementById('location').value = results[0].formatted_address;
+
+            console.log(results[0].formatted_address);
+
+          } else {
+            window.alert('No results found');
+          }
+        } else {
+          window.alert('Geocoder failed due to: ' + status);
+        }
+      });
+    }
+
+    google.maps.event.addListener(map, 'click', function (event) {
+      var result = [event.latLng.lat(), event.latLng.lng()];
+      transition(result);
+      myLat = event.latLng.lat();
+      myLong = event.latLng.lng();
+      console.log(myLat);
+      console.log(myLong);
+      coords = new google.maps.LatLng(myLat, myLong);
+      geocodeLatLng(geocoder, map, infowindow, marker);
+      document.getElementById('latitude').value = myLat;
+      document.getElementById('longitude').value = myLong;
+
+    });
+
+    var numDeltas = 100;
+    var delay = 10; //milliseconds
+    var i = 0;
+    var deltaLat;
+    var deltaLng;
+
+    function transition(result) {
+      i = 0;
+      deltaLat = (result[0] - position[0]) / numDeltas;
+      deltaLng = (result[1] - position[1]) / numDeltas;
+      moveMarker();
+    }
+
+
+    function moveMarker() {
+      position[0] += deltaLat;
+      position[1] += deltaLng;
+      var latlng = new google.maps.LatLng(position[0], position[1]);
+      marker.setPosition(latlng);
+      if (i != numDeltas) {
+        i++;
+        setTimeout(moveMarker, delay);
+      }
+    }
+
+  };
+
+
+  function failure() {
+    $('body').innerHTML("<p>Failure</p>");
   }
-
-};
-
-
-function failure() {
-  $('body').innerHTML("<p>Failure</p>");
 }
+
+update();
+
+
 
 
 function initialize() {
