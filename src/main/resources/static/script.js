@@ -299,6 +299,9 @@ function geocodeLatLng(geocoder, map, infowindow, marker) {
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
+
+
+
             var cloud = 'dfyxx5zdo'; // todo your cloud_name here!
             var preset= 'qsqog8rz'; // todo your upload_preset here!
 
