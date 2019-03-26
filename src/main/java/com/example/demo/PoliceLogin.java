@@ -7,6 +7,10 @@ public class PoliceLogin {
     private String last_name;
     private String username;
     private String password;
+    private String email;
+
+    public PoliceLogin() {
+    }
 
     public PoliceLogin(long id, String first_name, String last_name, String username, String password) {
         this.id = id;
@@ -21,6 +25,23 @@ public class PoliceLogin {
         this.last_name = last_name;
         this.username = username;
         this.password = password;
+    }
+
+    public PoliceLogin(long id, String first_name, String last_name, String username, String password, String email) {
+        this.id = id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public long getId() {

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class TipRepository  {
+public class TipRepository {
 
     @Autowired
     private DataSource dataSource;
@@ -45,28 +45,35 @@ public class TipRepository  {
 
     }
 
-    public void addTip(ReportedSuspicions reportedSuspicions){
+    public void addTip(ReportedSuspicions reportedSuspicions) {
         try {
             Connection con = dataSource.getConnection();
             PreparedStatement ps = con.prepareStatement("INSERT INTO TIPS(CRIME, TEXTBOX, LOCATION, LATITUDE, LONGITUDE, DATE1, TIME1, IMAGE) VALUES(?,?,?,?,?,?,?,?)");
-            ps.setString(1,reportedSuspicions.getCrime());
-            ps.setString(2,reportedSuspicions.getTextbox());
-            ps.setString(3,reportedSuspicions.getLocation());
-            ps.setFloat(4,reportedSuspicions.getLatitude());
-            ps.setFloat(5,reportedSuspicions.getLongitude());
-            ps.setString(6,reportedSuspicions.getDate1());
-            ps.setString(7,reportedSuspicions.getTime1());
-            ps.setString(8,reportedSuspicions.getImage());
+            ps.setString(1, reportedSuspicions.getCrime());
+            ps.setString(2, reportedSuspicions.getTextbox());
+            ps.setString(3, reportedSuspicions.getLocation());
+            ps.setFloat(4, reportedSuspicions.getLatitude());
+            ps.setFloat(5, reportedSuspicions.getLongitude());
+            ps.setString(6, reportedSuspicions.getDate1());
+            ps.setString(7, reportedSuspicions.getTime1());
+            ps.setString(8, reportedSuspicions.getImage());
 
 
             ps.executeUpdate();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    public void deleteTip( long id) {
 
 
-
-
+        try {
+            Connection con = dataSource.getConnection();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM TIPS WHERE id=?");
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

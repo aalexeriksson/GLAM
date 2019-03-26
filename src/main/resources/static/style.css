@@ -373,3 +373,8 @@ body{margin-top:20px;}
 .filterable .filters input[disabled]:-ms-input-placeholder {
     color: #333;
 }
+.card{
+margin-top:10%;
+margin-left: 40%;
+margin-right:40%;
+}

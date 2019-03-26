@@ -4,10 +4,7 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,7 +15,8 @@ public class TipController {
     @Autowired
     TipRepository tipRepo;
 
-    String cloud ="dfyxx5zdo";
+    String cloud = "dfyxx5zdo";
+
     //GetMapping for homepage
     @GetMapping("/")
     public String getStartpage() {
@@ -53,7 +51,6 @@ public class TipController {
     }
 
 
-
     @GetMapping("/receiver")
     public String getTipReceiver(Model model) {
         List<ReportedSuspicions> tipsList = tipRepo.getAllTips();
@@ -77,5 +74,20 @@ public class TipController {
         return "home";
     }
 
+
+    @DeleteMapping("/receiver/{id}")
+    public void delete(@PathVariable long id) {
+        tipRepo.deleteTip(id);
+    }
+    @GetMapping("/receiver/{id}")
+    public String getById(@PathVariable long id) {
+        tipRepo.getAllTips();
+    return "TipReceiver";}
+
+    @GetMapping("/login")
+    public String login(){
+
+        return "SignInReceiver";
+    }
 
 }
