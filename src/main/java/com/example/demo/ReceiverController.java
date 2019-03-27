@@ -42,4 +42,7 @@ public class ReceiverController {
         return "/TipReceiverHome";
     }
 
+
+
+
 }

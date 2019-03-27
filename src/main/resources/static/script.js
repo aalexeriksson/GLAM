@@ -109,14 +109,18 @@ $('#myForm').on('submit', function (e) {
 
 var map;
 let marker;
+update();
 
-function update(){
+function update() {
+  var currentDate = new Date();
+  var time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
+  var date = currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear();
+
+  document.getElementById('date').value = date;
+  document.getElementById('time').value = time;
+
   navigator.geolocation.getCurrentPosition(success, failure);
   function success(position) {
-    var currentDate = new Date();
-    var time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
-    var date = currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear();
-
     var myLat = position.coords.latitude;
     var myLong = position.coords.longitude;
 
@@ -126,8 +130,7 @@ function update(){
 
     document.getElementById('latitude').value = myLat;
     document.getElementById('longitude').value = myLong;
-    document.getElementById('date').value = date;
-    document.getElementById('time').value = time;
+   
 
 
     var coords = new google.maps.LatLng(myLat, myLong);

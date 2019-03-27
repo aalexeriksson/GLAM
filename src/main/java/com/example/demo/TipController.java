@@ -79,5 +79,16 @@ public class TipController {
         return "redirect:/";
     }
 
+    @GetMapping("/map")
+    public String getTipsOnMap(Model model) {
+        List<ReportedSuspicions> tipsList = tipRepo.getAllTips();
+        if (tipsList.size() != 0) {
+            model.addAttribute("tipsList", tipsList);
+        }
+        return "ReceiverMap";
+
+    }
+
+
 
 }

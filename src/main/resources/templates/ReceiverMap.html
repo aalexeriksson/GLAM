@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">
+	<title>MapView</title>
+		<script type="text/javascript"
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaDSEXBIq9OvQbY9CyAHJ8zpVsSaIcvtM&libraries=places"></script>
+
+</head>
+<body>
+hej
+	<div id="map" style="height:500px; width:500px;"></div>
+<script th:inline="javascript">
+	function initMap() {
+		var locations = [];
+		var listLat = [];
+		var listLng = [];
+
+		/*<![CDATA[*/
+		/*[# th:each="tip : ${tipsList}"]*/
+		var oneTip = [];
+
+		oneTip.push(/*[[${tip.id}]]*/);
+		oneTip.push(/*[[${tip.crime}]]*/);
+		oneTip.push(/*[[${tip.textbox}]]*/);
+		oneTip.push(/*[[${tip.location}]]*/);
+		oneTip.push(/*[[${tip.latitude}]]*/);
+		oneTip.push(/*[[${tip.longitude}]]*/);
+		oneTip.push(/*[[${tip.date1}]]*/);
+		oneTip.push(/*[[${tip.time1}]]*/);
+		oneTip.push(/*[[${tip.image}]]*/);
+		locations.push(oneTip);
+
+		listLat.push(parseFloat(/*[[${tip.latitude}]]*/));
+		listLng.push(parseFloat(/*[[${tip.longitude}]]*/));
+
+		/*[/]*/
+		/*]]>*/
+
+		var coords = new google.maps.LatLng(locations[i][4], locations[i][5]);
+
+		var mapOptions = {
+			zoom: 16,
+			center: coords,
+		}
+
+		map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+		let marker = new google.maps.Marker({
+			animation: google.maps.Animation.DROP,
+			map: map,
+			position: coords
+		});
+
+
+
+
+	 var center_lat = (Math.max(...listLat) + Math.min(...listLat)) / 2
+		var center_lng = (Math.max(...listLng) + Math.min(...listLng)) / 2
+		var my_center = { lat: 59.33258, lng: 18.0649};
+		var map_list = new google.maps.Map(
+			document.getElementById('map'), { zoom: 3, center: my_center });
+		var i;
+
+
+		for (i = 0; i < locations.length; i++) {
+			marker = new google.maps.Marker({
+				position: new google.maps.LatLng(locations[i][4], locations[i][5]),
+				map: map_list,
+				data: {
+					location: locations[i][3]
+				}
+			});
+			marker.addListener('click', function () {
+				if (!this.infoWindow) {
+					this.infoWindow = new google.maps.InfoWindow({
+						content: this.data.location
+					});
+				}
+				this.infoWindow.open(map_list, this); 
+
+			})
+		}
+	}
+</script>
+</body>
+</html>
