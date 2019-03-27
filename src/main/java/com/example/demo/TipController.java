@@ -90,7 +90,7 @@ public class TipController {
 
     @GetMapping("/map")
     public String getTipsOnMap(Model model) {
-        List<ReportedSuspicions> tipsList = tipRepo.getAllTips();
+        List<Suspicions> tipsList = suspicionRepository.getAllSuspicions();
         if (tipsList.size() != 0) {
             model.addAttribute("tipsList", tipsList);
         }

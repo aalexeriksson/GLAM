@@ -107,6 +107,7 @@ $('#myForm').on('submit', function (e) {
 });
 
 /*put map stuff here*/
+
 var map;
 let marker;
 update();
@@ -119,20 +120,6 @@ function update() {
   document.getElementById('date').value = date;
   document.getElementById('time').value = time;
 
-function update(){
-  navigator.geolocation.getCurrentPosition(success, failure);
-  function success(position) {
-
-    var myLat = position.coords.latitude;
-    var myLong = position.coords.longitude;
-
-    position = [];
-    position[0] = myLat;
-    position[1] = myLong;
-
-    document.getElementById('latitude').value = myLat;
-    document.getElementById('longitude').value = myLong;
-   
   navigator.geolocation.getCurrentPosition(success, failure);
   function success(position) {
     var myLat = position.coords.latitude;
@@ -144,7 +131,7 @@ function update(){
 
     document.getElementById('latitude').value = myLat;
     document.getElementById('longitude').value = myLong;
-   
+
 
 
     var coords = new google.maps.LatLng(myLat, myLong);
@@ -212,6 +199,7 @@ function update(){
       deltaLng = (result[1] - position[1]) / numDeltas;
       moveMarker();
     }
+
 
     function moveMarker() {
       position[0] += deltaLat;
