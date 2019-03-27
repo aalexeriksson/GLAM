@@ -8,62 +8,55 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
-
+@Controller
 public class ReceiverController {
-
-    @Autowired
-    TipRepository tipRepository;
 
     @Autowired
     PoliceLoginRepository policeRepository;
 
-//    @GetMapping("/TipReceiverHome")
-//    public String login(HttpSession session) {
-//
-//        if (session.getAttribute("currentUser") == null)
-//            return "TipReceiverHome";
-//        else
-//            return "redirect:/ReceiverLogin";
-//    }
-//
-//    @PostMapping("/PoliceProfile")
-//    public String loginPost(Model model, HttpSession session, @RequestParam String userName, @RequestParam String password) {
-//
-//        List<PoliceLogin> policeList = policeRepository.getAllPoliceLogins();
-//
-//        for (int i = 0; i < policeList.size(); i++) {
-//            if (userName.equals(policeList.get(i).getUsername()) && password.equals(policeList.get(i).getPassword())) {
-//                session.setAttribute("currentUser", policeList.get(i));
-//                return "redirect:/PoliceProfile";
-//            }
-//        }
-//        return "/TipReceiverHome";
-//    }
+    @Autowired
+    SuspicionRepository suspicionRepository;
 
-    @GetMapping("/login")
-    public String getLogin(){
-        return "ReceiverLogin";
+    @GetMapping("/AdminLogin")
+    public String login(HttpSession session) {
+
+        if (session.getAttribute("currentUser") == null)
+            return "AdminLogin";
+        else
+           return "redirect:/PoliceProfile";
+
     }
 
-    @GetMapping("/")
-    public String getTipReceiver(){
-        return "TipReceiver";
+    @PostMapping("/PoliceProfile")
+    public String loginPost(Model model, HttpSession session, @RequestParam String userName, @RequestParam String password) {
+
+        List<PoliceLogin> policeList = policeRepository.getAllPoliceLogins();
+
+        for (int i = 0; i < policeList.size(); i++) {
+            if (userName.equals(policeList.get(i).getUsername()) && password.equals(policeList.get(i).getPassword())) {
+                session.setAttribute("currentUser", policeList.get(i));
+                return "redirect:/PoliceProfile";
+            }
+        }
+        return "/AdminLogin";
+    }
+
+    @GetMapping("/PoliceProfile")
+    public String getTipReceiver(HttpSession session, Model model){
+        if (session.getAttribute("currentUser") == null)
+            return "AdminLogin";
+        else {
+
+            List<Suspicions> suspicionsList = suspicionRepository.getAllSuspicions();
+            model.addAttribute("suspicions", suspicionsList);
+            return "PoliceProfile";
+        }
     }
 
 
-    @PostMapping("/")
-    public String postTipReceiver(){
-
-    return "TipReceiver";
-    }
-
-    @PostMapping("/login")
-    public String postLogin(){
-
-        return "ReceiverLogin";
-    }
 
 
 }

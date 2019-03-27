@@ -3,14 +3,17 @@
 
 <head>
     <title>Persons</title>
+    <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" href="script.js"></script>
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaDSEXBIq9OvQbY9CyAHJ8zpVsSaIcvtM&libraries=places"></script>
+    <script src="https://www.google.com/recaptcha/api.js?hl=en" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
     <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaDSEXBIq9OvQbY9CyAHJ8zpVsSaIcvtM&libraries=places"></script>
 </head>
 
 <body>
@@ -22,11 +25,16 @@
 </nav>
 
     <div class="container-fluid">
+
         <div class="col-md-4">
-            <form name="PersonForm" method="POST" action="/form" th:object="${ReportedSuspicions}">
+
+            <form name="PersonForm" method="POST" action="/form" onsubmit="return submitUserForm();" th:object="${suspicions}">
+
+                <input type="hidden" name="category_of_suspicion" placeholder="Activity" th:field="*{category_of_suspicion}">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Type of suspicious person</label>
-                    <select class="form-control" id="exampleFormControlSelect1" th:field="*{crime}">
+                    <select class="form-control" id="exampleFormControlSelect1" th:field="*{type_of_suspicion}">
+                        <option value="--Select--" >--Select--</option>
                         <option value="Extremist" >Extremist</option>
                         <option value="Gang member"> gang member</option>
                         <option value="Consumer of prostitution"> prostitution</option>
@@ -38,20 +46,21 @@
 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Add some details (optional)</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="textbox" th:field="*{textbox}"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="textbox" th:field="*{details}"></textarea>
+                </div>
+                <div class="form-group">
+                    <a href="#" id="upload" th:field="*{media}">Upload an image</a>
                 </div>
 
-                <div class="form-group">
-                    <a href="#" id="upload">Upload an image</a>
-                </div>
+                <input type="checkbox" id="botCheck" name="bot" value="bot" th:field="*{type_of_suspicion}">
 
                 <div class="form-group">
                     <label for="location">Choose location (current location by default)</label>
                     <input type="text" autocomplete="on" class="form-control" id="location" rows="1"
-                           placeholder="Enter address here or choose current location below"  runat="server" name="location" th:field="*{location}"/>
+                           placeholder="Enter address here or choose current location below"  runat="server" name="location" th:field="*{address}"/>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
-                        see on map
+                        Choose from map
                     </button>
 
                     <input  type="hidden" id="latitude" name="latitude" th:field="*{latitude}" >
@@ -85,10 +94,16 @@
 
                             </div>
                             <div class="modal-footer">
+                                <button onClick="update()" type="button" class="btn btn-secondary" data-dismiss="modal">Get current position</button>
                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="g-recaptcha" data-sitekey="6LdfyJkUAAAAAGmywYQj-WufvMuZEsyg_xldYzOn" data-badge="bottomleft" data-callback="verifyCaptcha"></div>
+                    <div id="g-recaptcha-error"></div>
                 </div>
 
                 <!-- Button trigger modal -->
@@ -127,6 +142,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+
         <script src="script.js"></script>
 </body>
 

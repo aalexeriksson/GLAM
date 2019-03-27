@@ -16,9 +16,11 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-margin-left: 0;
     background-origin: content-box;
     margin-bottom: 2%;
-     text-indent: 10%;
-
+    text-indent: 10%;
+    padding : 0;
 }
+
+#botCheck{ display:none;}
 
 #navBarLogo{
 margin-top: auto;
@@ -30,6 +32,7 @@ margin-bottom: auto;
 #buttonDiv{
     padding: 20px;
 }
+
 .logo-main-container{
     align-content: center;
     text-align: center;
