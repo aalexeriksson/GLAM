@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/newFolder/style.css">
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaDSEXBIq9OvQbY9CyAHJ8zpVsSaIcvtM&libraries=places"></script>
     <script src="https://www.google.com/recaptcha/api.js?hl=en" async defer></script>
@@ -60,7 +60,7 @@
                            placeholder="Enter address here or choose current location below"  runat="server" name="location" th:field="*{address}"/>
 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable" >
                         Choose from map
                     </button>
 
@@ -95,7 +95,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button onClick="update()" type="button" class="btn btn-secondary" data-dismiss="modal">Get current position</button>
+                                <button onClick="update()" type="button" class="btn btn-secondary">Get current position</button>
                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
                             </div>
                         </div>
@@ -107,23 +107,23 @@
                     <div id="g-recaptcha-error"></div>
                 </div>
 
-                <!-- Button trigger modal -->
-                <button type="submit" class="btn btn-secondary">Submit</button>
-                
-                <!-- Modal -->
-                <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Thank you for submitting a tip! <a href="home.html">To home page</a></p>
-                            </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
+                        <!-- Button trigger modal -->
+                        <button type="submit" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">Submit</button>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Thank you for submitting a tip! <a href="/home">To home page</a></p>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
             </form>
         </div>
     </div>

@@ -220,10 +220,6 @@ function update() {
   }
 }
 
-update();
-
-
-
 
 function initialize() {
   var input = document.getElementById('location');

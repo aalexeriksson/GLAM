@@ -98,6 +98,9 @@ public class TipController {
 
     }
 
-
+    @GetMapping("/home")
+    public String returnHome() {
+        return "home";
+    }
 
 }

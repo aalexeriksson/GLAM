@@ -35,6 +35,7 @@ public class ReceiverController {
     public String login() {
         return "login";
     }
+
     @GetMapping("/police")
     public String getTipReceiver(){
         return "PoliceProfile";
