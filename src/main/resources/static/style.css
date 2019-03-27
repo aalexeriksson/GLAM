@@ -20,6 +20,8 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding : 0;
 }
 
+#botCheck{ display:none;}
+
 #navBarLogo{
 margin-top: auto;
 margin-bottom: auto;

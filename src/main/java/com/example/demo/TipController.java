@@ -16,9 +16,13 @@ public class TipController {
 
 
     @Autowired
-    TipRepository tipRepo;
+    SuspicionRepository suspicionRepository;
+
+    boolean condition = false;
 
     String cloud ="dfyxx5zdo";
+
+
     //GetMapping for homepage
     @GetMapping("/")
     public String getStartpage() {
@@ -28,56 +32,61 @@ public class TipController {
 
     @GetMapping("/ChooseCategory")
     public String getCategory() {
-
+        condition = true;
         return "ChooseCategory";
     }
 
     @GetMapping("/ObjectForm")
     public String getObjectForm(Model model) {
-        model.addAttribute("ReportedSuspicions", new ReportedSuspicions());
-        return "ObjectForm";
+        if(condition == false) {
+            return "home";
+        }
+        else {
+            model.addAttribute("suspicions", new Suspicions("Object"));
+            return "ObjectForm";
+        }
     }
 
     @GetMapping("/PersonForm")
     public String getPersonForm(Model model) {
-        model.addAttribute("ReportedSuspicions", new ReportedSuspicions());
-        return "PersonForm";
+
+        if(condition == false) {
+            return "home";
+        }
+        else {
+            model.addAttribute("suspicions", new Suspicions("Person"));
+            return "PersonForm";
+        }
+
     }
 
     @GetMapping("/ActivityForm")
     public String getActivityForm(Model model) {
+        if(condition == false) {
+            return "home";
+        }
+        else {
+            model.addAttribute("suspicions", new Suspicions("Activity"));
 
-        model.addAttribute("ReportedSuspicions", new ReportedSuspicions());
-
-        return "ActivityForm";
+            return "ActivityForm";
+        }
     }
 
 
     @PostMapping("/form")
-    public String submitPersonform(@ModelAttribute ReportedSuspicions reportedSuspicions) {
-    tipRepo.addTip(reportedSuspicions);
+    public String submitPersonform(@ModelAttribute Suspicions suspicions, @RequestParam(value = "picturecloudinary", required = false) String picture) {
+
+
+        if(!suspicions.getType_of_suspicion().endsWith("bot")){
+            suspicions.setMedia("https://res.cloudinary.com/" + cloud + "/" + picture);
+            suspicionRepository.saveSuspicion(suspicions);
+        }
+
         return "home";
     }
 
-    //receivercontroller
 
-    @GetMapping("/receiver")
-    public String getTipReceiver(Model model) {
-        List<ReportedSuspicions> tipsList = tipRepo.getAllTips();
-        model.addAttribute("tipsList", tipsList);
-        return "TipReceiver";
-    }
 
-//    @PostMapping("/receiver")
-//    public String postTipReceiver(){
-//
-//        return "TipReceiver";
-//    }
-    @PostMapping("/receiver")
-    public String profile(@ModelAttribute ReportedSuspicions reportedSuspicions, @RequestParam(value = "picturecloudinary", required = false) String picture) {
-        reportedSuspicions.setImage("https://res.cloudinary.com/" + cloud + "/" + picture);
-        return "redirect:/";
-    }
 
     @GetMapping("/map")
     public String getTipsOnMap(Model model) {

@@ -8,24 +8,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
-
+@Controller
 public class ReceiverController {
-
-    @Autowired
-    TipRepository tipRepository;
 
     @Autowired
     PoliceLoginRepository policeRepository;
 
-    @GetMapping("/TipReceiverHome")
+    @Autowired
+    SuspicionRepository suspicionRepository;
+
+    @GetMapping("/AdminLogin")
     public String login(HttpSession session) {
 
         if (session.getAttribute("currentUser") == null)
-            return "TipReceiverHome";
+            return "AdminLogin";
         else
-            return "redirect:/ReceiverLogin";
+           return "redirect:/PoliceProfile";
+
     }
 
     @PostMapping("/PoliceProfile")
@@ -39,7 +41,20 @@ public class ReceiverController {
                 return "redirect:/PoliceProfile";
             }
         }
-        return "/TipReceiverHome";
+        return "/AdminLogin";
+    }
+
+
+    @GetMapping("/PoliceProfile")
+    public String getTipReceiver(HttpSession session, Model model){
+        if (session.getAttribute("currentUser") == null)
+            return "AdminLogin";
+        else {
+
+            List<Suspicions> suspicionsList = suspicionRepository.getAllSuspicions();
+            model.addAttribute("suspicions", suspicionsList);
+            return "PoliceProfile";
+        }
     }
 
 

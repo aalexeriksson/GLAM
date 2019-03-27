@@ -106,7 +106,7 @@ $('#myForm').on('submit', function (e) {
     e.preventDefault();
 });
 
-
+/*put map stuff here*/
 var map;
 let marker;
 update();
@@ -119,6 +119,20 @@ function update() {
   document.getElementById('date').value = date;
   document.getElementById('time').value = time;
 
+function update(){
+  navigator.geolocation.getCurrentPosition(success, failure);
+  function success(position) {
+
+    var myLat = position.coords.latitude;
+    var myLong = position.coords.longitude;
+
+    position = [];
+    position[0] = myLat;
+    position[1] = myLong;
+
+    document.getElementById('latitude').value = myLat;
+    document.getElementById('longitude').value = myLong;
+   
   navigator.geolocation.getCurrentPosition(success, failure);
   function success(position) {
     var myLat = position.coords.latitude;
@@ -198,7 +212,6 @@ function update() {
       deltaLng = (result[1] - position[1]) / numDeltas;
       moveMarker();
     }
-
 
     function moveMarker() {
       position[0] += deltaLat;
@@ -323,9 +336,7 @@ function initialize() {
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
-
-
-
+/*-------------------*/
 
             var cloud = 'dfyxx5zdo'; // todo your cloud_name here!
             var preset= 'qsqog8rz'; // todo your upload_preset here!
@@ -336,3 +347,18 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
                 console.log('i was clicked');
             }, false);
+
+function submitUserForm() {
+    var response = grecaptcha.getResponse();
+    console.log(response.length);
+    if(response.length == 0) {
+        document.getElementById('g-recaptcha-error').innerHTML = '<span style="color:red;">This field is required.</span>';
+        return false;
+        }
+        return true;
+    }
+
+function verifyCaptcha() {
+    console.log("verified");
+    document.getElementById('g-recaptcha-error').innerHTML = '';
+}
