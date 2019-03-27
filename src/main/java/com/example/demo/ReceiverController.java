@@ -19,27 +19,32 @@ public class ReceiverController {
     @Autowired
     PoliceLoginRepository policeRepository;
 
-    @GetMapping("/TipReceiverHome")
-    public String login(HttpSession session) {
+//    @GetMapping("/TipReceiverHome")
+//    public String login(HttpSession session) {
+//
+//        if (session.getAttribute("currentUser") == null)
+//            return "TipReceiverHome";
+//        else
+//            return "redirect:/ReceiverLogin";
+//    }
+//
+//    @PostMapping("/PoliceProfile")
+//    public String loginPost(Model model, HttpSession session, @RequestParam String userName, @RequestParam String password) {
+//
+//        List<PoliceLogin> policeList = policeRepository.getAllPoliceLogins();
+//
+//        for (int i = 0; i < policeList.size(); i++) {
+//            if (userName.equals(policeList.get(i).getUsername()) && password.equals(policeList.get(i).getPassword())) {
+//                session.setAttribute("currentUser", policeList.get(i));
+//                return "redirect:/PoliceProfile";
+//            }
+//        }
+//        return "/TipReceiverHome";
+//    }
 
-        if (session.getAttribute("currentUser") == null)
-            return "TipReceiverHome";
-        else
-            return "redirect:/ReceiverLogin";
-    }
-
-    @PostMapping("/PoliceProfile")
-    public String loginPost(Model model, HttpSession session, @RequestParam String userName, @RequestParam String password) {
-
-        List<PoliceLogin> policeList = policeRepository.getAllPoliceLogins();
-
-        for (int i = 0; i < policeList.size(); i++) {
-            if (userName.equals(policeList.get(i).getUsername()) && password.equals(policeList.get(i).getPassword())) {
-                session.setAttribute("currentUser", policeList.get(i));
-                return "redirect:/PoliceProfile";
-            }
-        }
-        return "/TipReceiverHome";
+    @GetMapping("/login")
+    public String getLogin(){
+        return "ReceiverLogin";
     }
 
     @GetMapping("/")
@@ -47,12 +52,18 @@ public class ReceiverController {
         return "TipReceiver";
     }
 
+
     @PostMapping("/")
     public String postTipReceiver(){
 
     return "TipReceiver";
     }
 
+    @PostMapping("/login")
+    public String postLogin(){
+
+        return "ReceiverLogin";
+    }
 
 
 }

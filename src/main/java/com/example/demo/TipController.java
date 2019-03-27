@@ -87,7 +87,7 @@ public class TipController {
     @GetMapping("/login")
     public String login(){
 
-        return "SignInReceiver";
+        return "ReceiverLogin";
     }
 
 }

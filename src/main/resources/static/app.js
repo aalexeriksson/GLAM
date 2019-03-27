@@ -25,7 +25,7 @@ function connect() {
 }
 
 function disconnect() {
-    if (stompClient !== null) {
+    if (stompClient != null) {
         stompClient.disconnect();
     }
     setConnected(false);
@@ -33,7 +33,7 @@ function disconnect() {
 }
 
 function sendName() {
-    stompClient.send("/app/hello", {}, JSON.stringify({'name': $("#name").val()}));
+    stompClient.send("/app/chat", {}, JSON.stringify({'text': $("#text").val()}));
 }
 
 function showGreeting(message) {
@@ -48,3 +48,5 @@ $(function () {
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#send" ).click(function() { sendName(); });
 });
+
+connect();
