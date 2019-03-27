@@ -30,11 +30,10 @@ public class DemoApplicationTests {
 //		Assert.assertEquals("the number of logins must be 4", 4, login.size());
 //	}
 
-	@Test
-	public void testFindAllSuspicions() {
-		List<Suspicions> suspicion = suspicionRepository.getAllSuspicions();
-		Assert.assertEquals("the number of suspicions must be 6", 6, suspicion.size());
-	}
+//	@Test
+//	public void testFindAllSuspicions() {
+//
+//	}
 
 	@Test
 	public void testSaveSuspicion(){

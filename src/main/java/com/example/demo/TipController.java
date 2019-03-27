@@ -16,9 +16,6 @@ public class TipController {
 
 
     @Autowired
-    TipRepository tipRepo;
-
-    @Autowired
     SuspicionRepository suspicionRepository;
 
     boolean condition = false;
@@ -88,20 +85,8 @@ public class TipController {
         return "home";
     }
 
-    //receivercontroller
 
-    @GetMapping("/receiver")
-    public String getTipReceiver(Model model) {
-        List<ReportedSuspicions> tipsList = tipRepo.getAllTips();
-        model.addAttribute("tipsList", tipsList);
-        return "TipReceiver";
-    }
 
-    @PostMapping("/receiver")
-    public String profile(@ModelAttribute ReportedSuspicions reportedSuspicions, @RequestParam(value = "picturecloudinary", required = false) String picture) {
-        reportedSuspicions.setImage("https://res.cloudinary.com/" + cloud + "/" + picture);
-        return "redirect:/";
-    }
 
 
 }

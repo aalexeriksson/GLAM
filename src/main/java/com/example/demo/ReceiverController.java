@@ -8,39 +8,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class ReceiverController {
 
     @Autowired
-    TipRepository tipRepository;
-
-    @Autowired
     PoliceLoginRepository policeRepository;
 
-    @GetMapping("/TipReceiverHome")
+    @Autowired
+    SuspicionRepository suspicionRepository;
+
+    @GetMapping("/AdminLogin")
     public String login(HttpSession session) {
 
         if (session.getAttribute("currentUser") == null)
-            return "TipReceiverHome";
+            return "AdminLogin";
         else
-            return "redirect:/ReceiverLogin";
+           return "redirect:/PoliceProfile";
+
     }
 
-//    @PostMapping("/PoliceProfile")
-//    public String loginPost(Model model, HttpSession session, @RequestParam String userName, @RequestParam String password) {
-//
-//        List<PoliceLogin> policeList = policeRepository.getAllPoliceLogins();
-//
-//        for (int i = 0; i < policeList.size(); i++) {
-//            if (userName.equals(policeList.get(i).getUsername()) && password.equals(policeList.get(i).getPassword())) {
-//                session.setAttribute("currentUser", policeList.get(i));
-//                return "redirect:/PoliceProfile";
-//            }
-//        }
-//        return "/TipReceiverHome";
-//    }
 
     @GetMapping("/login")
     public String login() {
@@ -48,18 +37,24 @@ public class ReceiverController {
     }
     @GetMapping("/police")
     public String getTipReceiver(){
-        return "TipReceiver";
+        return "PoliceProfile";
     }
 
-    @PostMapping("/police")
-    public String postTipReceiver(){
+//    @PostMapping("/police")
+//    public String postTipReceiver(){}
 
-    return "TipReceiver";
+    @GetMapping("/PoliceProfile")
+    public String getTipReceiver(HttpSession session, Model model){
+
+            List<Suspicions> suspicionsList = suspicionRepository.getAllSuspicions();
+            model.addAttribute("suspicions", suspicionsList);
+            return "PoliceProfile";
     }
     @GetMapping("/popup")
     public String getTver(){
         return "popup";
     }
+
 
 
 }
