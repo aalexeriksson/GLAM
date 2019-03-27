@@ -24,8 +24,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/newFolder/*","/", "/ChooseCategory", "/ObjectForm", "/PersonForm", "/ActivityForm","/form", "/init", "/h2", "/h2/**").permitAll()
-                .antMatchers("/PoliceProfile").hasRole("ADMIN")
+                .antMatchers("/", "/ChooseCategory", "/ObjectForm", "/PersonForm", "/ActivityForm","/form", "/init", "/h2", "/h2/**").permitAll()
+                .antMatchers("/TipReceiverHome","/police", "/receiver").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
