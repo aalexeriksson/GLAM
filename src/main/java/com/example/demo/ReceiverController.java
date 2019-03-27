@@ -40,9 +40,6 @@ public class ReceiverController {
         return "PoliceProfile";
     }
 
-//    @PostMapping("/police")
-//    public String postTipReceiver(){}
-
     @GetMapping("/PoliceProfile")
     public String getTipReceiver(HttpSession session, Model model){
 
