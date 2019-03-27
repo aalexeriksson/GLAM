@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-
+@Controller
 public class ReceiverController {
 
     @Autowired
@@ -28,31 +28,38 @@ public class ReceiverController {
             return "redirect:/ReceiverLogin";
     }
 
-    @PostMapping("/PoliceProfile")
-    public String loginPost(Model model, HttpSession session, @RequestParam String userName, @RequestParam String password) {
+//    @PostMapping("/PoliceProfile")
+//    public String loginPost(Model model, HttpSession session, @RequestParam String userName, @RequestParam String password) {
+//
+//        List<PoliceLogin> policeList = policeRepository.getAllPoliceLogins();
+//
+//        for (int i = 0; i < policeList.size(); i++) {
+//            if (userName.equals(policeList.get(i).getUsername()) && password.equals(policeList.get(i).getPassword())) {
+//                session.setAttribute("currentUser", policeList.get(i));
+//                return "redirect:/PoliceProfile";
+//            }
+//        }
+//        return "/TipReceiverHome";
+//    }
 
-        List<PoliceLogin> policeList = policeRepository.getAllPoliceLogins();
-
-        for (int i = 0; i < policeList.size(); i++) {
-            if (userName.equals(policeList.get(i).getUsername()) && password.equals(policeList.get(i).getPassword())) {
-                session.setAttribute("currentUser", policeList.get(i));
-                return "redirect:/PoliceProfile";
-            }
-        }
-        return "/TipReceiverHome";
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
-
-    @GetMapping("/")
+    @GetMapping("/police")
     public String getTipReceiver(){
         return "TipReceiver";
     }
 
-    @PostMapping("/")
+    @PostMapping("/police")
     public String postTipReceiver(){
 
     return "TipReceiver";
     }
-
+    @GetMapping("/popup")
+    public String getTver(){
+        return "popup";
+    }
 
 
 }
