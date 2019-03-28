@@ -27,6 +27,7 @@
 <body>
 <div class="container">
     <div class="row">
+        <div class="col-md-11">
         <div class="panel panel-primary filterable">
             <div class="panel-heading">
                 <h3 class="panel-title">Tips</h3>
@@ -36,6 +37,7 @@
                     </button>
                 </div>
             </div>
+        </div>
             <table class="table">
                 <thead>
                 <tr class="filters">
@@ -72,56 +74,44 @@
 
                 </tbody>
             </table>
-        </div>
-        <ul class="pagination pull-right">
-            <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-        </ul>
-    </div>
-</div>
-</div>
-</div>
-</div>
-<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
-    enabled. Please enable
-    Javascript and reload this page!</h2></noscript>
-
-<div class="row">
-    <div class="col-md-6">
-        <div id="chatbox-container" class="col-md-8 table-wrapper-scroll-y">
-
-            <table id="conversation" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th>Incoming Emergency</th>
-                </tr>
-                </thead>
-                <tr> <td> Hi my name is police officer Jones, how can I assist? </td></tr>
-
-                <tbody id="greetings" class="styling chatbody">
-                </tbody>
-            </table>
+            <ul class="pagination pull-right">
+                <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+            </ul>
         </div>
 
-    <div id="lower-container" class="container">
-        <div class="row">
-            <div class="col-md-6 p-0">
-                <fieldset>
-                <form onsubmit="document.getElementById('text').value= ''">
-                    <input type="text" id="text" class="form-control" autocomplete="off">
-                    <button id="sendbtn" class="btn btn-outline-secondary" type="submit">Send</button>
-                </form>
-                </fieldset>
+        <div class="col-md-1">
+            <div id="chatbox-container" class="col-md-1 table-wrapper-scroll-y">
+
+                <table id="conversation" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Incoming Emergency</th>
+                    </tr>
+                    </thead>
+                    <tr> <td> Hi my name is police officer Jones, how can I assist? </td></tr>
+
+                    <tbody id="greetings" class="styling chatbody">
+                    </tbody>
+
+                </table>
+                <div id="lower-container" class="container">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <form onsubmit="document.getElementById('text').value= ''">
+                                <input type="text" id="text" class="form-control" autocomplete="off">
+                                <button id="sendbtn" class="btn btn-outline-secondary" type="submit">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-        </div>
-
-    </div>
+</div>
 </div>
 </div>
 
