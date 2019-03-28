@@ -46,7 +46,8 @@ $(function () {
     });
     $( "#connect" ).click(function() { connect(); });
     $( "#disconnect" ).click(function() { disconnect(); });
-    $( "#send" ).click(function() { sendName(); });
+    $( "#sendbtn" ).click(function() { sendName(); });
 });
 
 connect();
+stompClient.send("/app/chat", {}, JSON.stringify({'text': 'Hi my name is police officer Jones, how can I help?'}));

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>TipReceiver</title>
-    <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -29,7 +29,7 @@
     <div class="row">
         <div class="panel panel-primary filterable">
             <div class="panel-heading">
-                <h3 class="panel-title">Users</h3>
+                <h3 class="panel-title">Tips</h3>
                 <div class="pull-right">
                     <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
                 </div>
@@ -53,15 +53,18 @@
 
                                 <td th:text="${tipsList.id}"></td>
 
-                                <td><img th:if="${tipsList.image != 'https://res.cloudinary.com/dfyxx5zdo/null'}" th:src="${tipsList.image}"></td>
-                                <td th:text="${tipsList.crime}"class="mb-1">List group item heading>
+                                <td><img th:if="${tipsList.media != 'https://res.cloudinary.com/dfyxx5zdo/null'}" th:src="${tipsList.media}"></td>
+                                <td th:text="${tipsList.category_of_suspicion}"class="mb-1">List group item heading>
                                 </td>
-
-                                <td th:text="${tipsList.textbox}"></td>
+                                <td th:text="${tipsList.type_of_suspicion}"class="mb-1">List group item heading>
+                                </td>
+                                <td th:text="${tipsList.subtype_of_suspicion}"class="mb-1">List group item heading>
+                                </td>
+                                <td th:text="${tipsList.details}"></td>
                                 <td th:text="${tipsList.date1}"></td>
                                 <td th:text="${tipsList.time1}"></td>
 
-                                <td th:text="${tipsList.location}"></td>
+                                <td th:text="${tipsList.address}"></td>
 
                                 <td style="width: 20%;">
                                     <a href="#" class="table-link">
@@ -97,39 +100,122 @@
         </div>
     </div>
 </div>
+<div>
+<button type="button" class="btn btn-warning btn-lg btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Emergency</button></div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div id="chatbox-container" class="col-md-8 table-wrapper-scroll-y">
 
-            <table id="conversation" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th>Incoming Emergency</th>
-                </tr>
-                </thead>
-                <tbody id="greetings">
-                </tbody>
-            </table>
+<div class="container-fluid">
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ALERT!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="chatbox-container" class="col-md-8 table-wrapper-scroll-y">
+
+                                <table id="conversation" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Incoming Emergency</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="greetings">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div id="lower-container" class="container">
+                            <div class="row">
+                                <div class="col-md-7 col-sm-10">
+                                    <input type="text" id="text" class="form-control" autocomplete="off">
+                                </div>
+
+                                <div class="col-md-1 col-sm-12">
+                                    <button id="send" class="btn btn-outline-secondary" type="submit">Send</button>
+                                </div>
+
+                            </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <a href="/chat">    <button type="button" class="btn btn-primary">Start livechat</button></a>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div id="lower-container" class="container">
-        <div class="row">
-            <div class="col-md-7 col-sm-10">
-                <input type="text" id="text" class="form-control" autocomplete="off">
-            </div>
-
-            <div class="col-md-1 col-sm-12">
-                <button id="send" class="btn btn-outline-secondary" type="submit">Send</button>
-            </div>
-
-        </div>
-        </form>
+    <div class="logo-main-container">
+        <img class="logo-main-container" src="nameAndLogo2.png" alt="logo">
     </div>
 
+
+    <div class="custom-control custom-switch mx-auto">
+        <input type="checkbox" class="custom-control-input" id="customSwitch1">
+        <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+    </div>
+
+    <div id="buttonDiv">
+        <a href="/ChooseCategory">
+            <button type="submit"  class="btn btn-secondary btn-lg btn-block" style="background-color: #434343e3">Leave a
+                tip</button> </a>
+    </div>
+    <div class="card-footer text-muted mx-auto">
+        <a href="#">Terms & Conditions</a>
+    </div>
 </div>
-</div>
+
+
+
+<!--<div class="row">-->
+    <!--<div class="col-md-12">-->
+        <!--<div id="chatbox-container" class="col-md-8 table-wrapper-scroll-y">-->
+
+            <!--<table id="conversation" class="table table-bordered table-striped">-->
+                <!--<thead>-->
+                <!--<tr>-->
+                    <!--<th>Incoming Emergency</th>-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody id="greetings">-->
+                <!--</tbody>-->
+            <!--</table>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div id="lower-container" class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-7 col-sm-10">-->
+                <!--<input type="text" id="text" class="form-control" autocomplete="off">-->
+            <!--</div>-->
+
+            <!--<div class="col-md-1 col-sm-12">-->
+                <!--<button id="send" class="btn btn-outline-secondary" type="submit">Send</button>-->
+            <!--</div>-->
+
+        <!--</div>-->
+        <!--</form>-->
+    <!--</div>-->
+
+<!--</div>-->
+<!--</div>-->
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"

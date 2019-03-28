@@ -3,11 +3,12 @@
 <head>
     <title>Emergency Livechat</title>
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/main.css" rel="stylesheet">
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
     <script src="/app.js"></script>
+    <link href="/popup.css" rel="stylesheet">
+
 </head>
 <body>
 <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
@@ -27,7 +28,9 @@
                         <th>What is your emergency?</th>
                     </tr>
                     </thead>
-                    <tbody id="greetings">
+                   <tr> <td> Hi my name is police officer Jones, how can I assist? </td></tr>
+                    <tbody id="greetings" class="styling chatbody">
+
                     </tbody>
                 </table>
             </div>
@@ -36,15 +39,13 @@
             <div id="lower-container" class="container">
                 <div class="row">
                     <div class="col-md-7 col-sm-10">
-                        <input type="text" id="text" class="form-control" placeholder="Describe your emergency situation here..." autocomplete="off">
+                        <form onsubmit="document.getElementById('text').value= ''">
+                            <input type="text" id="text" class="form-control" placeholder="Describe your emergency situation here..." autocomplete="off">
+                            <button id="sendbtn" class="btn btn-outline-secondary" type="submit">Send</button>
+
+                        </form>
                     </div>
 
-                    <div class="col-md-1 col-sm-12">
-                        <button id="send" class="btn btn-outline-secondary" type="submit">Send</button>
-                    </div>
-
-    </div>
-    </form>
             </div>
 
         </div>
